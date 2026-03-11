@@ -3,55 +3,48 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EATRIX | Launching Soon in Kompally, Hyderabad</title>
+  <title>EATRIX | Fair Food Delivery | Launching Soon</title>
   <meta
     name="description"
-    content="EATRIX is launching soon in Kompally, Hyderabad with zero commission for restaurants, fair VĀHAKA earnings, and transparent pricing for customers."
+    content="EATRIX is launching soon in Kompally, Hyderabad. Zero commission for restaurants, transparent pricing for customers, and fair earnings for delivery partners."
   />
   <style>
     :root {
       --orange: #f97316;
-      --orange-dark: #ea580c;
       --red: #ef4444;
-      --red-dark: #dc2626;
-      --dark: #111827;
-      --dark-2: #1f2937;
-      --text: #475569;
-      --bg: #f8fafc;
+      --black: #111827;
+      --charcoal: #1f2937;
       --white: #ffffff;
+      --offwhite: #fff7f2;
+      --gray: #6b7280;
+      --border: rgba(17, 24, 39, 0.08);
       --success: #16a34a;
-      --info: #2563eb;
-      --border: #e5e7eb;
-      --shadow: 0 14px 40px rgba(15, 23, 42, 0.08);
-      --radius: 18px;
-      --max-width: 1200px;
+      --shadow: 0 18px 45px rgba(15, 23, 42, 0.10);
+      --radius: 22px;
+      --max: 1200px;
       --gradient: linear-gradient(135deg, var(--orange), var(--red));
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--bg);
-      color: var(--text);
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      color: var(--charcoal);
+      background:
+        radial-gradient(circle at top left, rgba(249, 115, 22, 0.08), transparent 32%),
+        radial-gradient(circle at top right, rgba(239, 68, 68, 0.08), transparent 28%),
+        #fafafa;
       line-height: 1.6;
       overflow-x: hidden;
     }
 
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
+    a { text-decoration: none; color: inherit; }
 
     .container {
-      width: min(100% - 32px, var(--max-width));
+      width: min(calc(100% - 32px), var(--max));
       margin: 0 auto;
     }
 
@@ -59,152 +52,139 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: rgba(248, 250, 252, 0.94);
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(12px);
+      background: rgba(255, 255, 255, 0.88);
       border-bottom: 1px solid var(--border);
     }
 
     .nav {
+      min-height: 76px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      min-height: 72px;
-      gap: 20px;
+      gap: 24px;
     }
 
     .brand {
-      font-size: 1.7rem;
+      font-size: 1.65rem;
       font-weight: 900;
-      letter-spacing: 1px;
-      color: var(--dark);
+      letter-spacing: 0.8px;
+      color: var(--black);
     }
 
     .brand span {
       background: var(--gradient);
       -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       background-clip: text;
-      color: transparent;
     }
 
     .nav-links {
       display: flex;
-      gap: 24px;
       align-items: center;
+      gap: 22px;
       flex-wrap: wrap;
     }
 
     .nav-links a {
       font-weight: 700;
-      color: var(--dark);
-      transition: 0.2s ease;
-    }
-
-    .nav-links a:hover {
-      color: var(--orange-dark);
+      color: var(--black);
+      font-size: 0.96rem;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
       padding: 14px 22px;
       border-radius: 999px;
-      border: none;
-      cursor: pointer;
       font-weight: 800;
       transition: 0.25s ease;
+      border: none;
+      cursor: pointer;
+      gap: 8px;
+      white-space: nowrap;
     }
 
     .btn-primary {
       background: var(--gradient);
       color: var(--white);
-      box-shadow: 0 8px 24px rgba(249, 115, 22, 0.25);
+      box-shadow: 0 12px 30px rgba(239, 68, 68, 0.22);
     }
 
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 12px 28px rgba(239, 68, 68, 0.22);
+      box-shadow: 0 16px 36px rgba(239, 68, 68, 0.28);
     }
 
     .btn-outline {
-      background: transparent;
-      color: var(--dark);
+      background: var(--white);
+      color: var(--black);
       border: 1px solid var(--border);
     }
 
     .btn-outline:hover {
-      background: var(--white);
-      transform: translateY(-1px);
+      transform: translateY(-2px);
+      background: #fff;
     }
 
     .hero {
-      padding: 72px 0 48px;
-      position: relative;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0 0 auto 0;
-      height: 420px;
-      background:
-        radial-gradient(circle at 20% 20%, rgba(249, 115, 22, 0.12), transparent 32%),
-        radial-gradient(circle at 80% 0%, rgba(239, 68, 68, 0.12), transparent 30%);
-      pointer-events: none;
+      padding: 72px 0 50px;
     }
 
     .hero-grid {
       display: grid;
       grid-template-columns: 1.15fr 1fr;
-      gap: 32px;
+      gap: 36px;
       align-items: center;
-      position: relative;
-      z-index: 1;
     }
 
     .eyebrow {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(249, 115, 22, 0.12);
+      color: #c2410c;
+      border: 1px solid rgba(249, 115, 22, 0.16);
       padding: 8px 14px;
-      background: #fff7ed;
-      color: var(--orange-dark);
-      border: 1px solid #fed7aa;
       border-radius: 999px;
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       font-weight: 800;
       margin-bottom: 18px;
     }
 
     h1, h2, h3 {
-      color: var(--dark);
       margin-top: 0;
-      line-height: 1.15;
+      line-height: 1.16;
+      color: var(--black);
     }
 
     h1 {
-      font-size: clamp(2.5rem, 5vw, 4.2rem);
+      font-size: clamp(2.6rem, 5vw, 4.4rem);
       margin-bottom: 16px;
+      max-width: 760px;
     }
 
     h2 {
-      font-size: clamp(1.9rem, 3vw, 2.6rem);
+      font-size: clamp(1.9rem, 3vw, 2.8rem);
       margin-bottom: 12px;
     }
 
-    .lead {
-      font-size: 1.06rem;
+    p.lead {
+      font-size: 1.08rem;
+      max-width: 680px;
+      color: #475569;
       margin-bottom: 24px;
-      max-width: 650px;
     }
 
     .hero-actions {
       display: flex;
-      gap: 14px;
       flex-wrap: wrap;
+      gap: 14px;
       margin-bottom: 24px;
     }
 
-    .hero-points {
+    .stats {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
@@ -219,107 +199,122 @@
       box-shadow: var(--shadow);
     }
 
-    .hero-card {
-      background: linear-gradient(145deg, #ffffff, #fff7ed);
+    .hero-side {
+      background: linear-gradient(145deg, #ffffff, #fff5ee);
       border: 1px solid var(--border);
-      border-radius: 28px;
-      padding: 28px;
+      border-radius: 30px;
+      padding: 24px;
       box-shadow: var(--shadow);
       position: relative;
       overflow: hidden;
     }
 
-    .hero-card::after {
+    .hero-side::before {
       content: "";
       position: absolute;
+      inset: auto -40px -40px auto;
       width: 180px;
       height: 180px;
-      border-radius: 50%;
-      right: -40px;
-      top: -40px;
-      background: radial-gradient(circle, rgba(249,115,22,0.14), transparent 65%);
+      background: radial-gradient(circle, rgba(249,115,22,0.18), transparent 70%);
       pointer-events: none;
     }
 
-    .phone-mock {
-      background: var(--dark);
-      border-radius: 32px;
+    .phone {
+      background: var(--black);
+      border-radius: 34px;
       padding: 16px;
       max-width: 360px;
       margin: 0 auto;
-      color: var(--white);
-      box-shadow: 0 18px 45px rgba(17, 24, 39, 0.28);
-      transform-style: preserve-3d;
-      animation: floatPhone 5s ease-in-out infinite;
+      box-shadow: 0 20px 50px rgba(17, 24, 39, 0.28);
     }
 
-    @keyframes floatPhone {
-      0%,100% { transform: translateY(0px) rotateY(0deg); }
-      50% { transform: translateY(-8px) rotateY(-3deg); }
-    }
-
-    .screen {
-      background: var(--white);
-      border-radius: 22px;
-      padding: 18px;
-      color: var(--dark);
-      min-height: 440px;
-      position: relative;
+    .phone-screen {
+      background: #fff;
+      min-height: 620px;
+      border-radius: 24px;
       overflow: hidden;
+      position: relative;
     }
 
-    .screen-slide {
+    .slider {
+      position: relative;
+      width: 100%;
+      height: 620px;
+    }
+
+    .slide {
       position: absolute;
-      inset: 18px;
+      inset: 0;
+      padding: 18px;
       opacity: 0;
-      transform: translateX(34px);
-      transition: opacity 0.55s ease, transform 0.55s ease;
+      transform: translateX(24px);
+      transition: all 0.65s ease;
+      background: #fff;
       pointer-events: none;
     }
 
-    .screen-slide.active {
+    .slide.active {
       opacity: 1;
       transform: translateX(0);
       pointer-events: auto;
     }
 
-    .mock-header {
+    .screen-top {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       margin-bottom: 14px;
     }
 
-    .mini-card {
-      background: #fff7ed;
-      border: 1px solid #fed7aa;
-      border-radius: 16px;
-      padding: 12px;
-      margin-bottom: 12px;
-      box-shadow: 0 8px 16px rgba(15, 23, 42, 0.04);
-    }
-
-    .tag {
+    .tiny-badge {
       display: inline-block;
-      font-size: 0.8rem;
-      font-weight: 800;
-      border-radius: 999px;
+      background: rgba(34, 197, 94, 0.12);
+      color: var(--success);
+      font-size: 0.78rem;
       padding: 6px 10px;
-      background: #dcfce7;
-      color: #15803d;
-      margin-bottom: 10px;
+      border-radius: 999px;
+      font-weight: 800;
     }
 
-    .order-total {
-      margin-top: 16px;
+    .banner {
+      background: var(--gradient);
+      color: var(--white);
+      border-radius: 20px;
+      padding: 18px;
+      margin-bottom: 14px;
+      box-shadow: 0 14px 28px rgba(239, 68, 68, 0.18);
+    }
+
+    .banner small {
+      display: block;
+      opacity: 0.85;
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+
+    .mock-card {
+      background: #fff8f4;
+      border: 1px solid rgba(249, 115, 22, 0.15);
+      border-radius: 18px;
       padding: 14px;
-      border-radius: 16px;
-      background: linear-gradient(135deg, var(--dark), var(--dark-2));
-      color: white;
+      margin-bottom: 12px;
     }
 
-    section {
-      padding: 44px 0;
+    .mock-card.dark {
+      background: #111827;
+      color: #fff;
+      border-color: transparent;
+    }
+
+    .mock-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section {
+      padding: 56px 0;
     }
 
     .section-head {
@@ -327,80 +322,40 @@
       margin-bottom: 28px;
     }
 
-    .cards-4,
-    .cards-3 {
+    .section-head p {
+      color: #526072;
+      margin: 0;
+    }
+
+    .grid-4, .grid-3 {
       display: grid;
-      gap: 20px;
+      gap: 22px;
     }
 
-    .cards-4 {
-      grid-template-columns: repeat(4, 1fr);
-    }
-
-    .cards-3 {
-      grid-template-columns: repeat(3, 1fr);
-    }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
 
     .card {
       background: var(--white);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 22px;
+      padding: 24px;
       box-shadow: var(--shadow);
-    }
-
-    .flip-card {
-      perspective: 1200px;
-      min-height: 260px;
-    }
-
-    .flip-inner {
-      position: relative;
-      width: 100%;
       height: 100%;
-      min-height: 260px;
-      transition: transform 0.8s;
-      transform-style: preserve-3d;
-    }
-
-    .flip-card:hover .flip-inner {
-      transform: rotateY(180deg);
-    }
-
-    .flip-front,
-    .flip-back {
-      position: absolute;
-      inset: 0;
-      backface-visibility: hidden;
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-      padding: 22px;
-      background: var(--white);
-    }
-
-    .flip-back {
-      transform: rotateY(180deg);
-      background: linear-gradient(145deg, #fff7ed, #fff1f2);
-    }
-
-    .card h3 {
-      margin-bottom: 10px;
-      font-size: 1.18rem;
     }
 
     .icon {
-      width: 46px;
-      height: 46px;
+      width: 48px;
+      height: 48px;
       border-radius: 14px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.2rem;
-      margin-bottom: 14px;
-      background: #fff7ed;
-      color: var(--orange-dark);
-      border: 1px solid #fed7aa;
+      background: rgba(249, 115, 22, 0.12);
+      color: #c2410c;
+      font-size: 1.15rem;
+      margin-bottom: 16px;
+      font-weight: 900;
     }
 
     .split {
@@ -419,14 +374,28 @@
     .feature-list li {
       background: var(--white);
       border: 1px solid var(--border);
-      border-radius: 14px;
+      border-radius: 16px;
       padding: 12px 14px;
       margin-bottom: 10px;
-      box-shadow: var(--shadow);
       font-weight: 700;
+      box-shadow: var(--shadow);
     }
 
-    .comparison {
+    .pricing-highlight {
+      background: linear-gradient(145deg, #111827, #0f172a);
+      color: var(--white);
+      border-radius: 26px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .pricing-highlight h3,
+    .pricing-highlight p,
+    .pricing-highlight li {
+      color: var(--white);
+    }
+
+    .compare {
       overflow-x: auto;
     }
 
@@ -434,7 +403,7 @@
       width: 100%;
       border-collapse: collapse;
       background: var(--white);
-      border-radius: var(--radius);
+      border-radius: 22px;
       overflow: hidden;
       box-shadow: var(--shadow);
       border: 1px solid var(--border);
@@ -447,29 +416,28 @@
     }
 
     th {
-      background: #fff7ed;
-      color: var(--dark);
+      background: #fff3ec;
+      color: var(--black);
     }
 
     .launch-box {
-      background: linear-gradient(135deg, var(--dark), #0f172a);
+      background: linear-gradient(135deg, #111827, #1f2937);
       color: var(--white);
-      border-radius: 28px;
-      padding: 36px;
+      border-radius: 30px;
+      padding: 38px;
       box-shadow: var(--shadow);
       position: relative;
       overflow: hidden;
     }
 
-    .launch-box::before {
+    .launch-box::after {
       content: "";
       position: absolute;
-      right: -80px;
-      bottom: -80px;
+      top: -60px;
+      right: -60px;
       width: 220px;
       height: 220px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(249,115,22,0.24), transparent 65%);
+      background: radial-gradient(circle, rgba(249,115,22,0.18), transparent 68%);
     }
 
     .launch-box h2,
@@ -479,33 +447,11 @@
       z-index: 1;
     }
 
-    .launch-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin: 20px 0 26px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .stat {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 16px;
-      padding: 14px;
-    }
-
-    .stat strong {
-      display: block;
-      font-size: 1.3rem;
-      color: #fff;
-      margin-bottom: 4px;
-    }
-
     footer {
-      padding: 36px 0 50px;
+      padding: 42px 0 56px;
       border-top: 1px solid var(--border);
-      margin-top: 30px;
+      margin-top: 26px;
+      background: #fff;
     }
 
     .footer-grid {
@@ -517,42 +463,54 @@
     .footer-links a {
       display: block;
       margin-bottom: 10px;
-      color: var(--text);
+      color: #475569;
       font-weight: 700;
     }
 
-    .muted {
-      color: #64748b;
-    }
+    .muted { color: #64748b; }
 
     .reveal {
       opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
+      transform: translateY(28px);
+      transition: 0.8s ease;
     }
 
-    .reveal.visible {
+    .reveal.show {
       opacity: 1;
       transform: translateY(0);
     }
 
-    .delay-1 { transition-delay: 0.08s; }
-    .delay-2 { transition-delay: 0.16s; }
-    .delay-3 { transition-delay: 0.24s; }
+    .countdown {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
 
-    @media (max-width: 980px) {
-      .hero-grid,
-      .split,
-      .cards-4,
-      .cards-3,
-      .footer-grid,
-      .launch-stats {
+    .count-box {
+      background: rgba(255,255,255,0.09);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      min-width: 86px;
+      padding: 14px;
+      text-align: center;
+    }
+
+    .count-box strong {
+      display: block;
+      font-size: 1.4rem;
+      color: #fff;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-grid, .split, .grid-4, .grid-3, .footer-grid {
         grid-template-columns: 1fr;
       }
+    }
 
+    @media (max-width: 720px) {
       .nav {
         flex-direction: column;
-        justify-content: center;
         padding: 14px 0;
       }
 
@@ -560,26 +518,29 @@
         justify-content: center;
       }
 
-      .screen {
-        min-height: 410px;
-      }
-    }
-
-    @media (max-width: 600px) {
       .hero {
-        padding-top: 42px;
-      }
-
-      .btn {
-        width: 100%;
+        padding-top: 48px;
       }
 
       .hero-actions {
         flex-direction: column;
       }
 
-      .nav-links {
-        gap: 12px 18px;
+      .btn {
+        width: 100%;
+      }
+
+      .phone {
+        max-width: 100%;
+      }
+
+      .slider, .phone-screen {
+        height: auto;
+        min-height: 580px;
+      }
+
+      .slide {
+        min-height: 580px;
       }
     }
   </style>
@@ -590,10 +551,10 @@
       <a href="#" class="brand">EAT<span>RIX</span></a>
       <nav class="nav-links">
         <a href="#restaurants">Restaurants</a>
-        <a href="#drivers">VĀHAKA</a>
+        <a href="#drivers">Drivers</a>
         <a href="#customers">Customers</a>
+        <a href="#pricing">Pricing</a>
         <a href="#how">How It Works</a>
-        <a href="#about">Launch</a>
         <a href="#contact" class="btn btn-primary">Pre-Register</a>
       </nav>
     </div>
@@ -602,88 +563,135 @@
   <main>
     <section class="hero">
       <div class="container hero-grid">
-        <div class="reveal visible">
-          <span class="eyebrow">Launching Soon • Kompally, Hyderabad</span>
-          <h1>Fair food delivery, built for restaurants, customers, and VĀHAKA partners.</h1>
+        <div class="reveal">
+          <span class="eyebrow">🚀 Launching Soon • Kompally, Hyderabad</span>
+          <h1>Fair Food Delivery for Restaurants, Drivers & Customers.</h1>
           <p class="lead">
-            EATRIX is launching with zero commission for restaurants, transparent customer pricing,
-            and fair payout visibility for delivery partners. Built hyperlocal. Built for trust.
+            EATRIX is building a transparent local delivery ecosystem with
+            <strong>zero commission for restaurants</strong>, fair earnings for delivery partners,
+            and clean pricing for customers.
           </p>
 
           <div class="hero-actions">
             <a href="#restaurants" class="btn btn-primary">For Restaurants</a>
-            <a href="#drivers" class="btn btn-outline">Join as VĀHAKA</a>
+            <a href="#drivers" class="btn btn-outline">Join as Vāhaka</a>
           </div>
 
-          <div class="hero-points">
-            <span class="pill">Zero Commission for Restaurants</span>
+          <div class="stats">
+            <span class="pill">Zero Commission</span>
             <span class="pill">₹5 Tech Fee / Order</span>
-            <span class="pill">1st Month Free</span>
-            <span class="pill">2nd Month 50% Off</span>
+            <span class="pill">Month 1 Free</span>
+            <span class="pill">Month 2 – 50% Off</span>
           </div>
         </div>
 
-        <div class="hero-card reveal delay-1">
-          <div class="phone-mock">
-            <div class="screen">
-              <div class="screen-slide active">
-                <div class="mock-header">
-                  <strong>EATRIX</strong>
-                  <span class="tag">Launching Soon</span>
+        <div class="hero-side reveal">
+          <div class="phone">
+            <div class="phone-screen">
+              <div class="slider" id="slider">
+                <!-- Slide 1 -->
+                <div class="slide active">
+                  <div class="screen-top">
+                    <strong>EATRIX</strong>
+                    <span class="tiny-badge">Launching Soon</span>
+                  </div>
+                  <div class="banner">
+                    <small>For Restaurants</small>
+                    <strong>Zero Commission. Keep More of Every Order.</strong>
+                  </div>
+                  <div class="mock-card">
+                    <div class="mock-row">
+                      <div>
+                        <strong>Month 1</strong>
+                        <div class="muted">Founding Partner Offer</div>
+                      </div>
+                      <strong style="color:#ea580c;">FREE</strong>
+                    </div>
+                  </div>
+                  <div class="mock-card">
+                    <div class="mock-row">
+                      <div>
+                        <strong>Month 2</strong>
+                        <div class="muted">Subscription Offer</div>
+                      </div>
+                      <strong style="color:#ea580c;">50% OFF</strong>
+                    </div>
+                  </div>
+                  <div class="mock-card">
+                    <div class="mock-row">
+                      <div>
+                        <strong>Per Completed Order</strong>
+                        <div class="muted">Transparent platform tech fee</div>
+                      </div>
+                      <strong>₹5</strong>
+                    </div>
+                  </div>
                 </div>
-                <div class="mini-card">
-                  <strong>Zero Commission</strong>
-                  <p class="muted">Restaurants keep food value. No percentage-based commission cuts.</p>
-                </div>
-                <div class="mini-card">
-                  <strong>Launch Offer</strong>
-                  <p class="muted">1st month free. 2nd month at 50% subscription pricing.</p>
-                </div>
-                <div class="mini-card">
-                  <strong>Transparent Billing</strong>
-                  <p class="muted">Gateway charges separate. ₹5 tech fee per completed order.</p>
-                </div>
-              </div>
 
-              <div class="screen-slide">
-                <div class="mock-header">
-                  <strong>Customer Checkout</strong>
-                  <span class="tag">Clear Pricing</span>
+                <!-- Slide 2 -->
+                <div class="slide">
+                  <div class="screen-top">
+                    <strong>VĀHAKA</strong>
+                    <span class="tiny-badge">Driver View</span>
+                  </div>
+                  <div class="banner">
+                    <small>For Delivery Partners</small>
+                    <strong>Clear Earnings. Weekly Payout Visibility.</strong>
+                  </div>
+                  <div class="mock-card dark">
+                    <div class="mock-row">
+                      <span>Today’s Deliveries</span>
+                      <strong>12</strong>
+                    </div>
+                  </div>
+                  <div class="mock-card">
+                    <div class="mock-row">
+                      <span>Estimated Weekly Earnings</span>
+                      <strong>₹4,850</strong>
+                    </div>
+                  </div>
+                  <div class="mock-card">
+                    <div class="mock-row">
+                      <span>Gear Policy</span>
+                      <strong>Installment Friendly</strong>
+                    </div>
+                  </div>
                 </div>
-                <div class="mini-card">
-                  <strong>Food Total</strong>
-                  <p class="muted">₹300.00</p>
-                </div>
-                <div class="mini-card">
-                  <strong>Delivery Fee</strong>
-                  <p class="muted">₹30 up to 3 km, then ₹10 / km after 3 km</p>
-                </div>
-                <div class="mini-card">
-                  <strong>Taxes</strong>
-                  <p class="muted">Shown clearly before order confirmation.</p>
-                </div>
-                <div class="order-total">
-                  <strong>Total Payable</strong>
-                  <div style="font-size:1.4rem;font-weight:800;margin-top:6px;">₹355.76</div>
-                </div>
-              </div>
 
-              <div class="screen-slide">
-                <div class="mock-header">
-                  <strong>VĀHAKA Earnings</strong>
-                  <span class="tag">Visible Weekly</span>
-                </div>
-                <div class="mini-card">
-                  <strong>Delivery Fee</strong>
-                  <p class="muted">Customer-paid delivery fee shown per order.</p>
-                </div>
-                <div class="mini-card">
-                  <strong>Weekly Ledger</strong>
-                  <p class="muted">Payouts, deductions, and incentives shown clearly.</p>
-                </div>
-                <div class="mini-card">
-                  <strong>Partner Support</strong>
-                  <p class="muted">Simple onboarding and hyperlocal delivery operations.</p>
+                <!-- Slide 3 -->
+                <div class="slide">
+                  <div class="screen-top">
+                    <strong>Customer App</strong>
+                    <span class="tiny-badge">Transparent Pricing</span>
+                  </div>
+                  <div class="banner">
+                    <small>For Customers</small>
+                    <strong>Simple checkout with no hidden surprises.</strong>
+                  </div>
+                  <div class="mock-card">
+                    <div class="mock-row">
+                      <span>Food Total</span>
+                      <strong>₹300</strong>
+                    </div>
+                  </div>
+                  <div class="mock-card">
+                    <div class="mock-row">
+                      <span>Delivery Fee</span>
+                      <strong>₹50</strong>
+                    </div>
+                  </div>
+                  <div class="mock-card">
+                    <div class="mock-row">
+                      <span>Taxes</span>
+                      <strong>Visible at checkout</strong>
+                    </div>
+                  </div>
+                  <div class="mock-card dark">
+                    <div class="mock-row">
+                      <span>Total</span>
+                      <strong>Clear & Trackable</strong>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -692,214 +700,193 @@
       </div>
     </section>
 
-    <section class="reveal">
+    <section class="section">
       <div class="container">
-        <div class="section-head">
-          <h2>Built for a better local delivery ecosystem</h2>
+        <div class="section-head reveal">
+          <h2>Built for a better delivery ecosystem</h2>
           <p>
-            EATRIX is being launched as a hyperlocal, transparent alternative where restaurants,
-            customers, and VĀHAKA partners all understand how the system works.
+            EATRIX is not another commission-heavy app. It is designed to create
+            a fair balance between restaurants, delivery partners, and customers.
           </p>
         </div>
 
-        <div class="cards-4">
-          <div class="flip-card">
-            <div class="flip-inner">
-              <div class="flip-front">
-                <div class="icon">%</div>
-                <h3>Zero Commission</h3>
-                <p>Restaurants are not charged commission on food value.</p>
-              </div>
-              <div class="flip-back">
-                <h3>How it works</h3>
-                <p>Restaurants pay a fixed subscription after launch offer period plus a ₹5 tech fee per completed order.</p>
-              </div>
-            </div>
+        <div class="grid-4">
+          <div class="card reveal">
+            <div class="icon">%</div>
+            <h3>Zero Commission</h3>
+            <p>No percentage cut on food value. Restaurants keep control of their margins.</p>
           </div>
 
-          <div class="flip-card">
-            <div class="flip-inner">
-              <div class="flip-front">
-                <div class="icon">₹</div>
-                <h3>Transparent Pricing</h3>
-                <p>Delivery and tax breakdown stays visible before checkout.</p>
-              </div>
-              <div class="flip-back">
-                <h3>Customer Fee Logic</h3>
-                <p>₹30 for up to 3 km, then ₹10 per km after 3 km. No hidden surprise fee lines.</p>
-              </div>
-            </div>
+          <div class="card reveal">
+            <div class="icon">₹</div>
+            <h3>Transparent Pricing</h3>
+            <p>Customers see clear delivery and checkout charges without confusing hidden fees.</p>
           </div>
 
-          <div class="flip-card">
-            <div class="flip-inner">
-              <div class="flip-front">
-                <div class="icon">🚴</div>
-                <h3>Fair VĀHAKA Flow</h3>
-                <p>Clear earnings structure, visible payout logic, and simpler operations.</p>
-              </div>
-              <div class="flip-back">
-                <h3>Partner Focus</h3>
-                <p>Weekly payout visibility, onboarding support, and cleaner delivery flow built for local scale.</p>
-              </div>
-            </div>
+          <div class="card reveal">
+            <div class="icon">🛵</div>
+            <h3>Fair Driver Model</h3>
+            <p>Vāhaka partners get visible payout logic, operational clarity, and scalable earning flow.</p>
           </div>
 
-          <div class="flip-card">
-            <div class="flip-inner">
-              <div class="flip-front">
-                <div class="icon">📍</div>
-                <h3>Hyperlocal Launch</h3>
-                <p>Starting in Kompally, Hyderabad with a controlled launch model.</p>
-              </div>
-              <div class="flip-back">
-                <h3>Why Local First</h3>
-                <p>Focused density means faster deliveries, better support, and stronger restaurant onboarding.</p>
-              </div>
-            </div>
+          <div class="card reveal">
+            <div class="icon">📍</div>
+            <h3>Hyperlocal Launch</h3>
+            <p>Starting with Kompally, Hyderabad — focused local density before wider expansion.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="restaurants" class="reveal">
+    <section id="restaurants" class="section">
       <div class="container split">
-        <div>
+        <div class="reveal">
           <div class="section-head">
-            <h2>Grow your restaurant without commission pressure</h2>
+            <h2>Built to help restaurants grow without commission pressure</h2>
             <p>
-              EATRIX is structured to reduce platform pressure on restaurants. Instead of high
-              commission cuts, partners join through a simple subscription model with clean billing.
+              Traditional delivery platforms compress margins. EATRIX uses a simple
+              transparent approach so restaurants can predict costs and scale with confidence.
             </p>
           </div>
 
           <ul class="feature-list">
-            <li>0% commission on food value</li>
+            <li>Month 1 subscription free for founding partners</li>
+            <li>Month 2 at 50% discount</li>
             <li>₹5 tech fee per completed order</li>
-            <li>Payment gateway deducted separately from settlement</li>
-            <li>1st month free • 2nd month 50% off</li>
-            <li>Transparent restaurant ledger and payout visibility</li>
+            <li>No commission on food value</li>
+            <li>Payment gateway deducted separately in settlement</li>
+            <li>Transparent payout and billing visibility</li>
           </ul>
 
           <a href="#contact" class="btn btn-primary">Pre-Register Restaurant</a>
         </div>
 
-        <div class="card">
+        <div class="pricing-highlight reveal" id="pricing">
           <h3>Restaurant Launch Offer</h3>
           <p>
-            Founding restaurant partners get early access to onboarding, first-month free subscription,
-            second-month 50% discounted pricing, and priority visibility during launch phase.
+            Founding Partner access for early restaurants in Kompally, Hyderabad.
           </p>
+          <ul class="feature-list" style="margin-top:20px;">
+            <li style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.08);">Month 1 – Free Subscription</li>
+            <li style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.08);">Month 2 – 50% Off</li>
+            <li style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.08);">₹5 Tech Fee / Completed Order</li>
+            <li style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.08);">Gateway Charges Settled Separately</li>
+          </ul>
         </div>
       </div>
     </section>
 
-    <section id="drivers" class="reveal">
+    <section id="drivers" class="section">
       <div class="container split">
-        <div class="card">
-          <h3>VĀHAKA Partner Model</h3>
+        <div class="card reveal">
+          <h3>VĀHAKA Partner Experience</h3>
           <p>
-            EATRIX is being built for visible weekly earnings, cleaner dispatching, and a more transparent
-            local delivery network. The goal is simple: reduce confusion and improve trust.
+            EATRIX is building a cleaner delivery model with clear earnings visibility,
+            better operational structure, and transparent payout logic.
+          </p>
+          <p class="muted">
+            Early-stage driver onboarding is free during launch preparation.
           </p>
         </div>
 
-        <div>
+        <div class="reveal">
           <div class="section-head">
-            <h2>Fair and visible earnings for VĀHAKA partners</h2>
+            <h2>For drivers who want clarity, not confusion</h2>
             <p>
-              We are designing EATRIX so VĀHAKA partners can clearly track delivery payouts,
-              deductions, and weekly performance from one place.
+              A delivery platform should not feel unpredictable. EATRIX is designed
+              to make payouts, order flow, and partner operations easier to understand.
             </p>
           </div>
 
           <ul class="feature-list">
-            <li>Visible weekly payout ledger</li>
-            <li>Simple hyperlocal delivery operations</li>
-            <li>Transparent delivery assignment flow</li>
-            <li>Launch-phase onboarding support</li>
-            <li>Built for long-term trust, not hidden deductions</li>
+            <li>Launch onboarding support</li>
+            <li>Transparent payout view</li>
+            <li>Weekly payout-friendly structure</li>
+            <li>Installment-based gear support model</li>
+            <li>Simple app flow for daily operations</li>
           </ul>
 
-          <a href="#contact" class="btn btn-primary">Join as VĀHAKA</a>
+          <a href="#contact" class="btn btn-primary">Join as Vāhaka</a>
         </div>
       </div>
     </section>
 
-    <section id="customers" class="reveal">
+    <section id="customers" class="section">
       <div class="container split">
-        <div>
+        <div class="reveal">
           <div class="section-head">
-            <h2>Affordable ordering with clearer delivery pricing</h2>
+            <h2>Simple, visible pricing for customers</h2>
             <p>
-              Customers deserve an easier checkout experience where delivery fees and taxes are visible
-              before placing the order.
+              Customers deserve a delivery experience that feels clear from checkout
+              to doorstep. EATRIX is designed to keep pricing understandable and local.
             </p>
           </div>
 
           <ul class="feature-list">
-            <li>Transparent delivery pricing</li>
-            <li>Nearby local restaurants first</li>
-            <li>Clear tax and order breakdown</li>
-            <li>Real-time order flow updates</li>
+            <li>₹30 delivery fee up to first 3 km</li>
+            <li>Distance-based fee after 3 km</li>
+            <li>Clear checkout breakdown</li>
+            <li>Real-time order visibility</li>
+            <li>Local restaurant focus</li>
           </ul>
 
           <a href="#contact" class="btn btn-primary">Get Launch Updates</a>
         </div>
 
-        <div class="card">
-          <h3>Customer Pricing Structure</h3>
+        <div class="card reveal">
+          <h3>Customer Experience</h3>
           <p>
-            Delivery fee starts at ₹30 for up to 3 km, then ₹10 per km after 3 km. Taxes are shown
-            clearly before payment confirmation.
+            The platform is being shaped around trust, affordability, and a cleaner
+            local ordering experience — without the clutter of hidden platform behavior.
           </p>
         </div>
       </div>
     </section>
 
-    <section id="how" class="reveal">
+    <section id="how" class="section">
       <div class="container">
-        <div class="section-head">
+        <div class="section-head reveal">
           <h2>How EATRIX works</h2>
-          <p>A simpler local delivery flow for customers, restaurants, and VĀHAKA partners.</p>
+          <p>
+            A clean and trackable order flow for customers, restaurants, and delivery partners.
+          </p>
         </div>
 
-        <div class="cards-4">
-          <div class="card">
+        <div class="grid-4">
+          <div class="card reveal">
             <div class="icon">1</div>
             <h3>Browse & Order</h3>
-            <p>Customers choose nearby restaurants and place an order with visible pricing.</p>
+            <p>Customers place orders from nearby listed restaurants.</p>
           </div>
-          <div class="card">
+          <div class="card reveal">
             <div class="icon">2</div>
-            <h3>Restaurant Confirms</h3>
-            <p>The restaurant accepts the order and starts preparation.</p>
+            <h3>Restaurant Accepts</h3>
+            <p>The restaurant confirms and starts order preparation.</p>
           </div>
-          <div class="card">
+          <div class="card reveal">
             <div class="icon">3</div>
-            <h3>VĀHAKA Assigned</h3>
-            <p>A delivery partner is assigned with clear route and payout visibility.</p>
+            <h3>Vāhaka Assigned</h3>
+            <p>A delivery partner is assigned with clear routing and pickup flow.</p>
           </div>
-          <div class="card">
+          <div class="card reveal">
             <div class="icon">4</div>
-            <h3>Delivered with Clarity</h3>
-            <p>Customers receive the order with simple tracking and transparent billing.</p>
+            <h3>Delivered with Visibility</h3>
+            <p>Customer receives the order through a simple, transparent workflow.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="reveal">
+    <section class="section">
       <div class="container">
-        <div class="section-head">
+        <div class="section-head reveal">
           <h2>Why EATRIX is different</h2>
           <p>
-            EATRIX is being launched with a cleaner commercial model that keeps billing, delivery,
-            and partner economics easier to understand.
+            A delivery model designed around fairness and operational clarity.
           </p>
         </div>
 
-        <div class="comparison">
+        <div class="compare reveal">
           <table>
             <thead>
               <tr>
@@ -909,20 +896,24 @@
             </thead>
             <tbody>
               <tr>
-                <td>High commission on food orders</td>
-                <td>0% restaurant commission model</td>
+                <td>Percentage commission on food value</td>
+                <td>Zero commission model</td>
               </tr>
               <tr>
-                <td>Complex or hidden partner cost pressure</td>
-                <td>₹5 tech fee + separate gateway deduction</td>
+                <td>Unclear cost pressure on restaurants</td>
+                <td>Simple monthly launch offer + ₹5 tech fee</td>
               </tr>
               <tr>
-                <td>Unclear delivery and payout logic</td>
-                <td>Transparent pricing and payout visibility</td>
+                <td>Hidden or confusing pricing behavior</td>
+                <td>Transparent pricing philosophy</td>
               </tr>
               <tr>
-                <td>Scaled for metros first</td>
-                <td>Hyperlocal launch in Kompally, Hyderabad</td>
+                <td>Limited payout clarity for drivers</td>
+                <td>Visible earnings approach for Vāhaka partners</td>
+              </tr>
+              <tr>
+                <td>City-wide heavy expansion from day one</td>
+                <td>Focused hyperlocal launch strategy</td>
               </tr>
             </tbody>
           </table>
@@ -930,54 +921,59 @@
       </div>
     </section>
 
-    <section id="about" class="reveal">
+    <section class="section" id="contact">
       <div class="container">
-        <div class="launch-box">
+        <div class="launch-box reveal">
           <h2>Launching Soon in Kompally, Hyderabad</h2>
           <p>
-            We are now opening pre-registration for restaurants, VĀHAKA partners, and early customers.
-            Founding partners will receive launch-phase benefits and early onboarding priority.
+            We are opening pre-registrations for restaurants, delivery partners,
+            and early supporters who want to be part of the founding launch network.
           </p>
 
-          <div class="launch-stats">
-            <div class="stat">
-              <strong>Month 1</strong>
-              Free subscription for launch partners
+          <div class="countdown">
+            <div class="count-box">
+              <strong id="days">30</strong>
+              <span>Days</span>
             </div>
-            <div class="stat">
-              <strong>Month 2</strong>
-              50% off restaurant subscription
+            <div class="count-box">
+              <strong id="hours">00</strong>
+              <span>Hours</span>
             </div>
-            <div class="stat">
-              <strong>Launch Model</strong>
-              Hyperlocal growth with transparent billing
+            <div class="count-box">
+              <strong id="minutes">00</strong>
+              <span>Minutes</span>
+            </div>
+            <div class="count-box">
+              <strong id="seconds">00</strong>
+              <span>Seconds</span>
             </div>
           </div>
 
-          <div class="hero-actions">
-            <a href="#contact" class="btn btn-primary">Restaurant Registration</a>
-            <a href="#contact" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.25);">VĀHAKA Registration</a>
+          <div class="hero-actions" style="margin-top:24px;">
+            <a href="mailto:founder@eatrix.in?subject=Restaurant%20Pre-Registration" class="btn btn-primary">Restaurant Registration</a>
+            <a href="mailto:founder@eatrix.in?subject=Driver%20Pre-Registration" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.24);background:transparent;">Driver Registration</a>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <footer id="contact">
+  <footer>
     <div class="container footer-grid">
       <div>
         <div class="brand">EAT<span>RIX</span></div>
         <p class="muted">
-          Launching soon in Kompally, Hyderabad with a transparent food delivery model for
-          restaurants, customers, and VĀHAKA partners.
+          A transparent local food delivery platform designed for restaurants,
+          customers, and Vāhaka delivery partners.
         </p>
       </div>
 
       <div class="footer-links">
         <strong>Platform</strong>
         <a href="#restaurants">For Restaurants</a>
-        <a href="#drivers">For VĀHAKA</a>
+        <a href="#drivers">For Drivers</a>
         <a href="#customers">For Customers</a>
+        <a href="#how">How It Works</a>
       </div>
 
       <div class="footer-links">
@@ -991,9 +987,9 @@
   </footer>
 
   <script>
-    // Screen slider
-    const slides = document.querySelectorAll('.screen-slide');
-    let currentSlide = 0;
+    // slider
+    const slides = document.querySelectorAll('.slide');
+    let current = 0;
 
     function showSlide(index) {
       slides.forEach((slide, i) => {
@@ -1002,20 +998,46 @@
     }
 
     setInterval(() => {
-      currentSlide = (currentSlide + 1) % slides.length;
-      showSlide(currentSlide);
-    }, 2800);
+      current = (current + 1) % slides.length;
+      showSlide(current);
+    }, 3200);
 
-    // Reveal on scroll
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
+    // reveal on scroll
+    const reveals = document.querySelectorAll('.reveal');
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
+          entry.target.classList.add('show');
         }
       });
     }, { threshold: 0.12 });
 
-    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    reveals.forEach(el => revealObserver.observe(el));
+
+    // countdown
+    const launchDate = new Date();
+    launchDate.setDate(launchDate.getDate() + 30);
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const diff = launchDate.getTime() - now;
+
+      if (diff <= 0) return;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById('days').textContent = String(days).padStart(2, '0');
+      document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+      document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+      document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
   </script>
 </body>
 </html>
