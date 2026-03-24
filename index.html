@@ -10,6 +10,16 @@
     content="EATRIX is launching soon in Kompally, Hyderabad. No commission on order value for restaurants, transparent pricing for customers, and onboarding for delivery partners."
   />
   <style>
+    @keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
     :root {
       --orange: #f97316;
       --red: #ef4444;
@@ -65,21 +75,47 @@
       gap: 24px;
     }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      font-size: 1.25rem;
-      font-weight: 900;
-      letter-spacing: 0.4px;
-      color: var(--black);
-    }
+    ..brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+}
 
-    .brand img {
-      width: 80px;
-      height: 80px;
-      object-fit: contain;
-    }
+.brand::before {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, rgba(249,115,22,0.25), transparent 70%);
+  z-index: -1;
+  border-radius: 50%;
+}
+    
+
+    ..brand img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+      animation: fadeIn 0.8s ease forwards;
+animation-delay: 0.2s;
+opacity: 0;
+  transition: all 0.4s ease;
+  filter: drop-shadow(0 8px 18px rgba(249,115,22,0.35));
+}
+@keyframes floatLogo {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0px); }
+}
+
+.brand img {
+  animation: floatLogo 3s ease-in-out infinite;
+}
+.brand img:hover {
+  transform: scale(1.1) rotate(-3deg);
+  filter: drop-shadow(0 12px 28px rgba(239,68,68,0.5));
+}
 
     .brand span {
       background: var(--gradient);
