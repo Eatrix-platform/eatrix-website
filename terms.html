@@ -1,38 +1,803 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Terms & Conditions | EATRIX</title>
-  <style>
-    body{margin:0;font-family:Inter,Arial,sans-serif;background:#fafafa;color:#1f2937}
-    .wrap{width:min(100% - 32px,900px);margin:0 auto;padding:32px 0}
-    .card{background:#fff;border:1px solid rgba(17,24,39,.08);border-radius:22px;padding:24px;box-shadow:0 18px 45px rgba(15,23,42,.08)}
-    h1,h2{color:#111827}
-    a{color:#ef4444;text-decoration:none;font-weight:700}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms and Conditions — EATRIX Technologies LLP</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #C0392B;
+    --red-dark: #96281B;
+    --red-light: #f9eeec;
+    --ink: #1a1a1a;
+    --ink-mid: #444;
+    --ink-light: #777;
+    --rule: #e8e0da;
+    --bg: #faf8f6;
+    --white: #ffffff;
+    --sidebar-w: 260px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.75;
+  }
+
+  /* ── TOP BAR ── */
+  .topbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: var(--white);
+    border-bottom: 1px solid var(--rule);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 40px;
+    height: 60px;
+  }
+  .topbar-brand {
+    display: flex; align-items: center; gap: 10px;
+  }
+  .topbar-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; font-weight: 700;
+    color: var(--red);
+    letter-spacing: -0.3px;
+  }
+  .topbar-doc {
+    font-size: 12px; font-weight: 500;
+    color: var(--ink-light);
+    text-transform: uppercase; letter-spacing: 1.5px;
+    border-left: 1px solid var(--rule);
+    padding-left: 14px; margin-left: 4px;
+  }
+  .topbar-meta {
+    font-size: 12px; color: var(--ink-light);
+  }
+
+  /* ── LAYOUT ── */
+  .layout {
+    display: flex;
+    padding-top: 60px;
+    min-height: 100vh;
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    position: fixed;
+    top: 60px; left: 0; bottom: 0;
+    width: var(--sidebar-w);
+    background: var(--white);
+    border-right: 1px solid var(--rule);
+    overflow-y: auto;
+    padding: 28px 0 40px;
+  }
+  .sidebar-label {
+    font-size: 10px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 2px;
+    color: var(--ink-light);
+    padding: 0 24px 12px;
+  }
+  .sidebar nav a {
+    display: block;
+    padding: 7px 24px;
+    font-size: 13px; font-weight: 400;
+    color: var(--ink-mid);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    transition: all 0.15s ease;
+    line-height: 1.4;
+  }
+  .sidebar nav a:hover,
+  .sidebar nav a.active {
+    color: var(--red);
+    border-left-color: var(--red);
+    background: var(--red-light);
+  }
+
+  /* ── MAIN CONTENT ── */
+  .main {
+    margin-left: var(--sidebar-w);
+    flex: 1;
+    max-width: 820px;
+    padding: 60px 64px 100px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    padding-bottom: 48px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 56px;
+  }
+  .hero-eyebrow {
+    font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 2.5px;
+    color: var(--red);
+    margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px; font-weight: 700;
+    color: var(--ink);
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    margin-bottom: 20px;
+  }
+  .hero h1 span { color: var(--red); }
+  .hero-meta {
+    display: flex; gap: 32px; flex-wrap: wrap;
+    margin-top: 24px;
+  }
+  .hero-meta-item {
+    display: flex; flex-direction: column; gap: 2px;
+  }
+  .hero-meta-item .label {
+    font-size: 10px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 1.5px;
+    color: var(--ink-light);
+  }
+  .hero-meta-item .value {
+    font-size: 13px; font-weight: 500;
+    color: var(--ink-mid);
+  }
+  .intro-box {
+    margin-top: 28px;
+    padding: 18px 22px;
+    background: var(--red-light);
+    border-left: 3px solid var(--red);
+    border-radius: 0 6px 6px 0;
+    font-size: 14px;
+    color: var(--ink-mid);
+    line-height: 1.7;
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    margin-bottom: 64px;
+    scroll-margin-top: 80px;
+  }
+
+  .section-header {
+    display: flex; align-items: flex-start; gap: 16px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .section-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px; font-weight: 700;
+    color: var(--red);
+    background: var(--red-light);
+    border: 1px solid #e8c5bf;
+    border-radius: 4px;
+    padding: 3px 9px;
+    min-width: 36px;
+    text-align: center;
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.2px;
+    line-height: 1.3;
+  }
+
+  /* subsections */
+  .subsection {
+    margin-bottom: 28px;
+  }
+  .subsection-title {
+    font-size: 13px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 1px;
+    color: var(--red-dark);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px dashed var(--rule);
+  }
+
+  p {
+    color: var(--ink-mid);
+    margin-bottom: 14px;
+    font-size: 15px;
+  }
+
+  ul {
+    list-style: none;
+    margin: 12px 0 16px;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  ul li {
+    padding: 10px 14px 10px 36px;
+    position: relative;
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    color: var(--ink-mid);
+    font-size: 14px;
+    line-height: 1.65;
+  }
+  ul li::before {
+    content: '';
+    position: absolute;
+    left: 14px; top: 18px;
+    width: 6px; height: 6px;
+    background: var(--red);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  ul li strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .note {
+    margin: 16px 0;
+    padding: 14px 18px;
+    background: #fffbf0;
+    border: 1px solid #f0dea0;
+    border-radius: 6px;
+    font-size: 13.5px;
+    color: #665500;
+    line-height: 1.65;
+    font-style: italic;
+  }
+
+  em {
+    font-style: italic;
+    color: var(--ink-light);
+  }
+
+  /* ── FOOTER ── */
+  .doc-footer {
+    margin-top: 72px;
+    padding-top: 40px;
+    border-top: 2px solid var(--rule);
+    text-align: center;
+  }
+  .doc-footer .closing {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px; font-weight: 600;
+    color: var(--ink);
+    max-width: 540px;
+    margin: 0 auto 16px;
+    line-height: 1.5;
+  }
+  .doc-footer .copy {
+    font-size: 12px; color: var(--ink-light);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .sidebar { display: none; }
+    .main { margin-left: 0; padding: 40px 24px 80px; }
+    .hero h1 { font-size: 30px; }
+    .topbar { padding: 0 20px; }
+  }
+</style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="card">
-      <h1>Terms & Conditions</h1>
-      <p><a href="index.html">← Back to Home</a></p>
 
-      <h2>1. Platform role</h2>
-      <p>EATRIX operates as a technology platform connecting customers, restaurant partners, and delivery partners.</p>
-
-      <h2>2. Pricing</h2>
-      <p>EATRIX does not charge commission as a percentage of order value. Customer-facing prices may include bundled delivery charges. Internal commercial structures remain confidential.</p>
-
-      <h2>3. Accounts</h2>
-      <p>Users and partners must provide accurate information and maintain account security.</p>
-
-      <h2>4. Use of platform</h2>
-      <p>Restaurant partners, drivers, and users must comply with applicable laws and platform rules.</p>
-
-      <h2>5. Contact</h2>
-      <p>Contact: info@eatrix.in</p>
-    </div>
+<!-- TOP BAR -->
+<header class="topbar">
+  <div class="topbar-brand">
+    <span class="topbar-logo">EATRIX</span>
+    <span class="topbar-doc">Terms &amp; Conditions</span>
   </div>
+  <span class="topbar-meta">Effective: July 1, 2025</span>
+</header>
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-label">Contents</div>
+    <nav>
+      <a href="#s1">1. Definitions</a>
+      <a href="#s2">2. Eligibility</a>
+      <a href="#s3">3. Platform Role</a>
+      <a href="#s4">4. Account Registration</a>
+      <a href="#s5">5. Order Flow</a>
+      <a href="#s6">6. Pricing &amp; Payments</a>
+      <a href="#s7">7. Payment Terms</a>
+      <a href="#s8">8. Cancellation Policy</a>
+      <a href="#s9">9. Refund Policy</a>
+      <a href="#s10">10. Delivery Partner</a>
+      <a href="#s11">11. Restaurant Responsibilities</a>
+      <a href="#s12">12. Taxes</a>
+      <a href="#s13">13. Limitation of Liability</a>
+      <a href="#s14">14. Prohibited Activities</a>
+      <a href="#s15">15. Suspension &amp; Termination</a>
+      <a href="#s16">16. Intellectual Property</a>
+      <a href="#s17">17. Dispute Resolution</a>
+      <a href="#s18">18. Governing Law</a>
+      <a href="#s19">19. Modifications</a>
+      <a href="#s20">20. Contact Information</a>
+    </nav>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-eyebrow">Legal Document</div>
+      <h1>Terms and<br><span>Conditions</span></h1>
+      <div class="hero-meta">
+        <div class="hero-meta-item">
+          <span class="label">Entity</span>
+          <span class="value">EATRIX Technologies LLP</span>
+        </div>
+        <div class="hero-meta-item">
+          <span class="label">Effective Date</span>
+          <span class="value">July 1, 2025</span>
+        </div>
+        <div class="hero-meta-item">
+          <span class="label">Last Updated</span>
+          <span class="value">July 1, 2025</span>
+        </div>
+        <div class="hero-meta-item">
+          <span class="label">Jurisdiction</span>
+          <span class="value">Hyderabad, Telangana, India</span>
+        </div>
+      </div>
+      <div class="intro-box">
+        Please read these Terms and Conditions ("Terms") carefully before using the EATRIX platform. By accessing or using our website, mobile application, or any services offered by EATRIX Technologies LLP ("EATRIX", "we", "us", or "our"), you agree to be bound by these Terms. If you do not agree, you must not use the Platform.
+      </div>
+    </div>
+
+    <!-- S1 -->
+    <section class="section" id="s1">
+      <div class="section-header">
+        <span class="section-num">1</span>
+        <h2 class="section-title">Definitions</h2>
+      </div>
+      <p>For the purposes of these Terms, the following definitions shall apply:</p>
+      <ul>
+        <li><strong>"Platform":</strong> The EATRIX website, mobile application, and all associated digital infrastructure owned and operated by EATRIX Technologies LLP.</li>
+        <li><strong>"User":</strong> Any individual or entity who accesses or uses the Platform in any capacity, including Customers, Restaurants, and Delivery Partners.</li>
+        <li><strong>"Customer":</strong> Any individual who places a food or beverage order through the Platform for personal consumption.</li>
+        <li><strong>"Restaurant":</strong> Any food service establishment, cloud kitchen, or vendor registered on the Platform to list and fulfil orders placed by Customers.</li>
+        <li><strong>"Delivery Partner":</strong> An independent individual registered on the Platform to perform last-mile delivery of orders from Restaurants to Customers.</li>
+        <li><strong>"Subscription Fee":</strong> The monthly fee of ₹2,999 (subject to applicable discounts) paid by Restaurants for access to Platform services.</li>
+        <li><strong>"Operational Fee":</strong> The fixed per-order operational fee charged by EATRIX to Restaurants as a service charge for the use of the Platform.</li>
+        <li><strong>"Delivery Fee":</strong> The charge levied on Customers to cover the cost of delivery, as described in Section 6.</li>
+      </ul>
+    </section>
+
+    <!-- S2 -->
+    <section class="section" id="s2">
+      <div class="section-header">
+        <span class="section-num">2</span>
+        <h2 class="section-title">Eligibility</h2>
+      </div>
+      <p>To use the Platform, you must:</p>
+      <ul>
+        <li>Be at least 18 years of age.</li>
+        <li>Be legally capable of entering into a binding contract under the Indian Contract Act, 1872.</li>
+        <li>Provide accurate, complete, and up-to-date information during registration.</li>
+        <li>Not be barred from using the Platform under applicable laws of India.</li>
+        <li>In the case of Restaurants and Delivery Partners, hold all required licences, registrations, and permits as mandated by applicable law.</li>
+      </ul>
+      <p><em>EATRIX reserves the right to refuse access or terminate accounts that fail to meet eligibility requirements.</em></p>
+    </section>
+
+    <!-- S3 -->
+    <section class="section" id="s3">
+      <div class="section-header">
+        <span class="section-num">3</span>
+        <h2 class="section-title">Platform Role — Technology Aggregator</h2>
+      </div>
+      <p>EATRIX operates solely as a technology intermediary and marketplace aggregator. The Platform facilitates the discovery of Restaurants, the placement of food orders, and the coordination of delivery services. EATRIX is not a food provider, caterer, or restaurateur.</p>
+      <p>Accordingly:</p>
+      <ul>
+        <li>EATRIX does not prepare, cook, store, package, or deliver food items.</li>
+        <li>The contractual relationship for the sale of food is directly between the Customer and the Restaurant.</li>
+        <li>The contractual relationship for delivery is between the Customer and the Delivery Partner.</li>
+        <li>EATRIX is not liable for the quality, safety, accuracy of description, or fitness for purpose of any food item listed on the Platform.</li>
+        <li>Any dispute regarding food quality, incorrect orders, or delivery issues is primarily the responsibility of the Restaurant or Delivery Partner, as applicable.</li>
+      </ul>
+    </section>
+
+    <!-- S4 -->
+    <section class="section" id="s4">
+      <div class="section-header">
+        <span class="section-num">4</span>
+        <h2 class="section-title">Account Registration and Responsibility</h2>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title">4.1 Registration</div>
+        <p>All Users must create an account to access core Platform features. During registration, you agree to provide truthful information, maintain the accuracy of your account details, and keep your login credentials confidential.</p>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title">4.2 Account Security</div>
+        <p>You are solely responsible for all activities conducted under your account. You must notify EATRIX immediately at support@eatrix.in if you suspect any unauthorised access to or use of your account. EATRIX shall not be liable for any loss or damage arising from your failure to protect your account credentials.</p>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title">4.3 One Account Per User</div>
+        <p>Each User is permitted to maintain one active account per category (Customer, Restaurant, or Delivery Partner). Multiple accounts created to circumvent policies or platform fees are prohibited and may result in permanent suspension.</p>
+      </div>
+    </section>
+
+    <!-- S5 -->
+    <section class="section" id="s5">
+      <div class="section-header">
+        <span class="section-num">5</span>
+        <h2 class="section-title">Order Flow and Acceptance</h2>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title">5.1 Order Placement</div>
+        <p>A Customer places an order through the Platform by selecting items from a Restaurant's menu and completing the checkout process, including payment.</p>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title">5.2 Order Confirmation</div>
+        <p>An order is considered confirmed once the Customer receives a digital confirmation from the Platform. This confirmation constitutes a binding agreement between the Customer and the Restaurant.</p>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title">5.3 Restaurant Acceptance</div>
+        <p>Restaurants may accept or reject orders at their discretion. If an order is rejected, the Customer will be notified promptly and a full refund will be initiated.</p>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title">5.4 Order Fulfilment</div>
+        <p>The Restaurant is responsible for preparing the order within the time displayed on the Platform. EATRIX does not guarantee specific preparation or delivery times, which are estimates only.</p>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title">5.5 Delivery Assignment</div>
+        <p>Upon order confirmation, the Platform assigns an available Delivery Partner. EATRIX does not guarantee the immediate availability of Delivery Partners at all times.</p>
+      </div>
+    </section>
+
+    <!-- S6 -->
+    <section class="section" id="s6">
+      <div class="section-header">
+        <span class="section-num">6</span>
+        <h2 class="section-title">Pricing and Payments</h2>
+      </div>
+      <p>EATRIX is committed to honest, straightforward pricing. What you see at checkout is exactly what you pay — no surprises, no hidden charges. This section explains how charges are presented to Customers, and how EATRIX's commercial arrangements with Restaurants and Delivery Partners work separately.</p>
+
+      <div class="subsection">
+        <div class="subsection-title">6.1 Food Item Price</div>
+        <p>The price of each food item is set solely by the Restaurant. EATRIX does not influence, mark up, or control menu pricing. The price displayed on the Platform for any item reflects the price set by the Restaurant, inclusive of any GST that the Restaurant is required to charge under applicable law.</p>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">6.2 Delivery Fee</div>
+        <p>Customers are charged a single, unified <strong>Delivery Fee</strong> for each order. This fee is a bundled amount that covers all costs associated with getting your order to you, including delivery distance, logistics operations, and platform infrastructure required to coordinate and complete the delivery. The Delivery Fee is not itemised into its component parts on the customer-facing checkout screen; it is presented as a single, consolidated charge.</p>
+        <p>The Delivery Fee varies by order and is calculated based on the distance between the Restaurant and the delivery location. As a general guide:</p>
+        <ul>
+          <li>For deliveries up to 3 km, a standard base Delivery Fee applies.</li>
+          <li>For deliveries beyond 3 km, an incremental per-km charge is added to the base fee.</li>
+          <li>The exact Delivery Fee applicable to your order will always be displayed at checkout before you confirm and pay.</li>
+        </ul>
+        <div class="note">Note: The Delivery Fee is not a commission charged to the Restaurant. It is a customer-facing charge for the delivery service. The Delivery Fee is a bundled charge and its internal components are not itemised separately to Customers. EATRIX reserves the right to optimise pricing, delivery allocation, and operational costs through automated systems and internal algorithms.</div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">6.3 What You See is What You Pay</div>
+        <p>Before confirming any order, Customers will see a clear order summary that includes:</p>
+        <ul>
+          <li>The subtotal of food items selected;</li>
+          <li>The applicable Delivery Fee for the order;</li>
+          <li>GST and other taxes, where separately applicable and required to be shown under law; and</li>
+          <li>The <strong>total payable amount</strong> before order confirmation.</li>
+        </ul>
+        <p>There are no charges added after checkout. No surcharges, service fees, or additional levies will be applied to a Customer's order beyond what is displayed at the time of confirmation.</p>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">6.4 Taxes Displayed to Customers</div>
+        <p>Where required by the Goods and Services Tax Act, 2017, or any other applicable legislation, GST and other statutory taxes will be displayed as separate line items in the Customer's order summary. The food item prices shown by Restaurants may be inclusive of GST depending on how the Restaurant has configured their listings. In all cases, the total payable amount shown before confirmation includes all applicable taxes.</p>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title">6.5 Restaurant Pricing Arrangements (Not Visible to Customers)</div>
+        <p>EATRIX operates on a <strong>zero commission on food order value</strong> model for Restaurants. No percentage-based commission is deducted from the value of any Customer's order. Instead, the Platform operates on a subscription and fixed service fee model — Restaurants pay EATRIX through a monthly subscription fee and a fixed per-order service fee. These are business-to-business charges agreed upon between EATRIX and the Restaurant, and they do not appear on the Customer's order summary or receipt in any form.</p>
+        <p>For details of EATRIX's fee structure applicable to Restaurants and Delivery Partners, please refer to Sections 7.2 and 7.4 respectively.</p>
+      </div>
+    </section>
+
+    <!-- S7 -->
+    <section class="section" id="s7">
+      <div class="section-header">
+        <span class="section-num">7</span>
+        <h2 class="section-title">Payment Terms</h2>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title">7.1 Customer Payments</div>
+        <p>Customers must pay the full order amount (food price + delivery fee + applicable taxes) at the time of placing the order. Payments are processed through third-party payment gateways integrated into the Platform. EATRIX does not store card details or sensitive payment data.</p>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title">7.2 Restaurant Subscription and Fees</div>
+        <p>Restaurants are subject to the following fee structure:</p>
+        <ul>
+          <li><strong>Monthly Subscription Fee:</strong> ₹2,999 per month (early-bird and promotional discounts may apply as communicated by EATRIX).</li>
+          <li><strong>Zero Commission on Food Order Value:</strong> EATRIX does not charge a percentage-based commission on food order value. The Platform operates on a subscription and fixed service fee model.</li>
+          <li><strong>Fixed Per-Order Operational Fee:</strong> A fixed operational fee per successfully completed order is deducted from Restaurant earnings. The applicable rate is communicated to the Restaurant at the time of onboarding and may be updated with prior written notice.</li>
+          <li><strong>Payment Gateway Charges:</strong> Applicable transaction fees levied by the payment gateway provider will be deducted from the Restaurant's payout.</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title">7.3 Restaurant Payouts</div>
+        <p>EATRIX will remit earnings to Restaurants after deducting the applicable per-order operational fee, payment gateway charges, and any other applicable deductions (such as outstanding subscription amounts or chargebacks). Payout cycles will be communicated to Restaurants at the time of onboarding and may be updated with prior notice.</p>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title">7.4 Delivery Partner Payouts</div>
+        <p>Delivery Partners will receive payouts for completed deliveries based on the rate communicated during onboarding. Any applicable deductions — including for equipment rentals, platform subscriptions (if any), or chargebacks for verified misconduct — will be itemised and deducted from earnings prior to payout.</p>
+      </div>
+    </section>
+
+    <!-- S8 -->
+    <section class="section" id="s8">
+      <div class="section-header">
+        <span class="section-num">8</span>
+        <h2 class="section-title">Cancellation Policy</h2>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title">8.1 Cancellation by Customer</div>
+        <ul>
+          <li>Orders may be cancelled by the Customer free of charge before the Restaurant has accepted and begun preparing the order.</li>
+          <li>Once an order has been accepted and preparation has commenced, cancellation may not be possible. If permitted, a partial or no refund may apply depending on the stage of preparation.</li>
+          <li>Cancellations after a Delivery Partner has been dispatched may attract a cancellation fee covering the Delivery Partner's partial journey.</li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title">8.2 Cancellation by Restaurant</div>
+        <p>If a Restaurant cancels an accepted order, the Customer will receive a full refund. Restaurants with a high cancellation rate may be subject to review, penalties, or removal from the Platform.</p>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title">8.3 Cancellation by EATRIX</div>
+        <p>EATRIX reserves the right to cancel any order in cases of fraud, system errors, unforeseen circumstances, or violation of these Terms. Customers will be notified and refunded where applicable.</p>
+      </div>
+    </section>
+
+    <!-- S9 -->
+    <section class="section" id="s9">
+      <div class="section-header">
+        <span class="section-num">9</span>
+        <h2 class="section-title">Refund Policy</h2>
+      </div>
+      <p>Refunds shall be processed in accordance with EATRIX's Refund Policy, which is available as a separate document on the Platform. Key principles include:</p>
+      <ul>
+        <li>Refunds are evaluated on a case-by-case basis, considering the nature of the complaint.</li>
+        <li>Valid refund claims include incorrect items, missing items, spoilt or inedible food (with photographic evidence), and significant delays beyond the estimated time.</li>
+        <li>Refunds will be credited to the original payment method within 5–7 business days.</li>
+        <li>EATRIX's determination on refund eligibility is final, subject to applicable consumer protection laws under the Consumer Protection Act, 2019.</li>
+        <li>Delivery fees are generally non-refundable unless the non-delivery was caused by the Delivery Partner or EATRIX's system.</li>
+      </ul>
+      <p><em>Please refer to our detailed Refund Policy at [insert URL] for complete information.</em></p>
+    </section>
+
+    <!-- S10 -->
+    <section class="section" id="s10">
+      <div class="section-header">
+        <span class="section-num">10</span>
+        <h2 class="section-title">Delivery Partner Role and Liability</h2>
+      </div>
+      <p>Delivery Partners are independent contractors and are not employees, agents, or representatives of EATRIX. Accordingly:</p>
+      <ul>
+        <li>Delivery Partners operate on their own account and assume sole responsibility for their tax compliance, road safety, and legal obligations as individuals.</li>
+        <li>EATRIX does not supervise, direct, or control the manner in which Delivery Partners carry out deliveries.</li>
+        <li>Delivery Partners must comply with all applicable traffic laws and maintain valid driving licences, vehicle insurance, and permits.</li>
+        <li>Delivery Partners are responsible for ensuring safe and timely delivery of orders in the condition received from the Restaurant.</li>
+        <li>EATRIX shall not be liable for accidents, injuries, property damage, or losses caused by a Delivery Partner during the course of delivery.</li>
+        <li>Any disputes between a Customer and a Delivery Partner should be reported to EATRIX, which will endeavour to mediate in good faith but bears no legal liability for such incidents.</li>
+      </ul>
+    </section>
+
+    <!-- S11 -->
+    <section class="section" id="s11">
+      <div class="section-header">
+        <span class="section-num">11</span>
+        <h2 class="section-title">Restaurant Responsibilities</h2>
+      </div>
+      <p>By registering on the Platform, Restaurants agree and warrant that:</p>
+      <ul>
+        <li>All food items listed on the Platform comply with applicable food safety laws, including the Food Safety and Standards Act, 2006, and regulations issued by FSSAI.</li>
+        <li>They hold a valid FSSAI licence and all other required business permits.</li>
+        <li>All food is prepared in hygienic conditions using safe and legally permissible ingredients.</li>
+        <li>Menu items, descriptions, prices, and availability are accurate and kept up to date on the Platform.</li>
+        <li>They are solely responsible for collecting and remitting applicable GST and any other taxes on food orders.</li>
+        <li>Any applicable Packaging charges displayed at checkout are reasonable and disclosed to the Customer.</li>
+        <li>They will fulfil orders in a timely manner and inform EATRIX promptly of any inability to fulfil orders.</li>
+        <li>They will not engage in misleading advertising, fake reviews, or any form of fraud on the Platform.</li>
+      </ul>
+    </section>
+
+    <!-- S12 -->
+    <section class="section" id="s12">
+      <div class="section-header">
+        <span class="section-num">12</span>
+        <h2 class="section-title">Taxes</h2>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title">12.1 Restaurant GST Obligations</div>
+        <p>Restaurants are registered or liable to register under the Goods and Services Tax Act, 2017. They are solely responsible for charging, collecting, and remitting GST on food orders as per applicable rates (5% or 18% depending on the category of establishment and items). EATRIX is not the supplier of food and therefore does not collect GST on behalf of Restaurants.</p>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title">12.2 EATRIX GST</div>
+        <p>EATRIX raises tax invoices to Restaurants for the monthly Subscription Fee and per-order operational fees. These invoices will include applicable GST. The Restaurant is responsible for availing of any eligible Input Tax Credit (ITC) in respect of such invoices.</p>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title">12.3 TDS and Other Deductions</div>
+        <p>Where required by law, EATRIX may deduct Tax Deducted at Source (TDS) on payments to Restaurants and Delivery Partners. EATRIX shall issue Form 26AS/TDS certificates as required under the Income Tax Act, 1961.</p>
+      </div>
+    </section>
+
+    <!-- S13 -->
+    <section class="section" id="s13">
+      <div class="section-header">
+        <span class="section-num">13</span>
+        <h2 class="section-title">Limitation of Liability</h2>
+      </div>
+      <p>To the maximum extent permitted by applicable law:</p>
+      <ul>
+        <li>EATRIX's total cumulative liability to any User for any claim arising under these Terms shall not exceed the amount paid by that User to EATRIX in the three (3) months immediately preceding the event giving rise to the claim.</li>
+        <li>EATRIX shall not be liable for any indirect, incidental, consequential, special, or punitive damages, including loss of profit, data, goodwill, or business opportunity, even if advised of the possibility of such damages.</li>
+        <li>EATRIX does not warrant that the Platform will be uninterrupted, error-free, secure, or free of viruses or other harmful components.</li>
+        <li>EATRIX is not responsible for force majeure events, including but not limited to natural disasters, internet outages, government actions, or labour disputes that affect Platform availability or order fulfilment.</li>
+      </ul>
+    </section>
+
+    <!-- S14 -->
+    <section class="section" id="s14">
+      <div class="section-header">
+        <span class="section-num">14</span>
+        <h2 class="section-title">Prohibited Activities</h2>
+      </div>
+      <p>Users are strictly prohibited from engaging in the following activities on or through the Platform:</p>
+      <ul>
+        <li>Using the Platform for any unlawful, fraudulent, or deceptive purpose.</li>
+        <li>Submitting false, misleading, or defamatory reviews or content.</li>
+        <li>Attempting to circumvent, hack, reverse-engineer, or interfere with the Platform's technology or security systems.</li>
+        <li>Creating fake accounts or impersonating another person or entity.</li>
+        <li>Engaging in any activity that disrupts the experience of other Users.</li>
+        <li>Using bots, scrapers, or automated tools to access or extract data from the Platform without EATRIX's written consent.</li>
+        <li>Listing prohibited, banned, or illegal food items, substances, or products.</li>
+        <li>Attempting to manipulate the Platform's rating, review, or search algorithms.</li>
+        <li>Facilitating or participating in money laundering, tax evasion, or financial fraud through the Platform.</li>
+      </ul>
+    </section>
+
+    <!-- S15 -->
+    <section class="section" id="s15">
+      <div class="section-header">
+        <span class="section-num">15</span>
+        <h2 class="section-title">Suspension or Termination of Accounts</h2>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title">15.1 Termination by User</div>
+        <p>Any User may request the deletion of their account at any time by contacting support@eatrix.in. Restaurant accounts must ensure all outstanding dues are cleared prior to termination. Subscription Fees already paid are non-refundable upon voluntary termination.</p>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title">15.2 Termination or Suspension by EATRIX</div>
+        <p>EATRIX reserves the right to suspend or permanently terminate any account without prior notice if:</p>
+        <ul>
+          <li>The User has violated any provision of these Terms.</li>
+          <li>The User has engaged in fraudulent, abusive, or illegal conduct.</li>
+          <li>The Restaurant has failed to maintain required food safety standards or licences.</li>
+          <li>A Delivery Partner has committed misconduct, caused harm, or violated applicable laws.</li>
+          <li>There is a risk to the safety or integrity of the Platform or other Users.</li>
+        </ul>
+        <p>Upon termination, all rights granted to the User under these Terms shall immediately cease. EATRIX shall not be liable for any losses arising from account suspension or termination made in good faith.</p>
+      </div>
+    </section>
+
+    <!-- S16 -->
+    <section class="section" id="s16">
+      <div class="section-header">
+        <span class="section-num">16</span>
+        <h2 class="section-title">Intellectual Property</h2>
+      </div>
+      <p>All intellectual property rights in and to the Platform, including but not limited to:</p>
+      <ul>
+        <li>The EATRIX name, logo, trademarks, and trade dress;</li>
+        <li>The Platform's software, source code, algorithms, and technical architecture;</li>
+        <li>All content, graphics, UI/UX design, and marketing materials;</li>
+      </ul>
+      <p>are owned exclusively by EATRIX Technologies LLP and are protected under applicable intellectual property laws of India, including the Trade Marks Act, 1999, and the Copyright Act, 1957.</p>
+      <p>Users are granted a limited, non-exclusive, non-transferable, revocable licence to use the Platform solely for its intended purpose. No User may copy, reproduce, distribute, modify, create derivative works from, or commercially exploit any part of the Platform without EATRIX's prior written consent.</p>
+    </section>
+
+    <!-- S17 -->
+    <section class="section" id="s17">
+      <div class="section-header">
+        <span class="section-num">17</span>
+        <h2 class="section-title">Dispute Resolution</h2>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title">17.1 Informal Resolution</div>
+        <p>In the event of any dispute, claim, or controversy arising out of or in connection with these Terms or the Platform, the affected party shall first contact EATRIX at support@eatrix.in and allow 30 days for good-faith resolution.</p>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title">17.2 Arbitration</div>
+        <p>If the dispute is not resolved informally, it shall be referred to and finally resolved by binding arbitration in accordance with the Arbitration and Conciliation Act, 1996 (as amended). The seat and venue of arbitration shall be Hyderabad, Telangana, India. The proceedings shall be conducted in English.</p>
+      </div>
+      <div class="subsection">
+        <div class="subsection-title">17.3 Jurisdiction</div>
+        <p>Subject to the arbitration clause above, the courts of Hyderabad, Telangana shall have exclusive jurisdiction over any matters arising under or in connection with these Terms that are required to be adjudicated by a court of law.</p>
+      </div>
+    </section>
+
+    <!-- S18 -->
+    <section class="section" id="s18">
+      <div class="section-header">
+        <span class="section-num">18</span>
+        <h2 class="section-title">Governing Law</h2>
+      </div>
+      <p>These Terms and all matters arising from them shall be governed by and construed in accordance with the laws of the Republic of India, including but not limited to:</p>
+      <ul>
+        <li>The Information Technology Act, 2000, and the IT (Intermediary Guidelines and Digital Media Ethics Code) Rules, 2021;</li>
+        <li>The Consumer Protection Act, 2019;</li>
+        <li>The Goods and Services Tax Act, 2017;</li>
+        <li>The Indian Contract Act, 1872;</li>
+        <li>The Food Safety and Standards Act, 2006.</li>
+      </ul>
+    </section>
+
+    <!-- S19 -->
+    <section class="section" id="s19">
+      <div class="section-header">
+        <span class="section-num">19</span>
+        <h2 class="section-title">Modifications to Terms</h2>
+      </div>
+      <p>EATRIX reserves the right to amend, update, or replace these Terms at any time. When material changes are made, EATRIX will provide notice through:</p>
+      <ul>
+        <li>A notification displayed on the Platform;</li>
+        <li>An email sent to the registered email address on record; or</li>
+        <li>An update to the "Last Updated" date at the top of this document.</li>
+      </ul>
+      <p>Your continued use of the Platform after the effective date of any amended Terms constitutes your acceptance of the revised Terms. If you do not agree with the changes, you must discontinue your use of the Platform and, if applicable, request account deletion.</p>
+    </section>
+
+    <!-- S20 -->
+    <section class="section" id="s20">
+      <div class="section-header">
+        <span class="section-num">20</span>
+        <h2 class="section-title">Contact Information</h2>
+      </div>
+      <p>For any questions, complaints, grievances, or requests regarding these Terms or the Platform, please reach out to us through the following channels:</p>
+      <ul>
+        <li><strong>Legal / General Enquiries:</strong> support@eatrix.in</li>
+        <li><strong>Grievance Officer:</strong> support@eatrix.in (Subject: "Grievance — [Your Name]")</li>
+        <li><strong>Registered Address:</strong> EATRIX Technologies LLP, Hyderabad, Telangana, India</li>
+        <li><strong>Business Hours:</strong> Monday to Saturday, 10:00 AM – 7:00 PM IST</li>
+      </ul>
+      <p><em>We aim to respond to all queries within 3 business days.</em></p>
+    </section>
+
+    <!-- FOOTER -->
+    <div class="doc-footer">
+      <p class="closing">By using the EATRIX Platform, you acknowledge that you have read, understood, and agreed to these Terms and Conditions in their entirety.</p>
+      <p class="copy">© 2025 EATRIX Technologies LLP. All Rights Reserved. &nbsp;|&nbsp; Hyderabad, Telangana, India</p>
+    </div>
+
+  </main>
+</div>
+
+<script>
+  // Highlight active sidebar link on scroll
+  const sections = document.querySelectorAll('.section');
+  const navLinks = document.querySelectorAll('.sidebar nav a');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(a => a.classList.remove('active'));
+        const id = entry.target.id;
+        const active = document.querySelector(`.sidebar nav a[href="#${id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+
 </body>
 </html>
