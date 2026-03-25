@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EATRIX — Fair Food Delivery, Pre-Launch</title>
+  <title>EATRIX — 0% Commission Food Delivery, Pre-Launch</title>
   <meta
     name="description"
-    content="EATRIX is a transparent food delivery platform built for customers, restaurants, and delivery partners. Pre-launch onboarding is open."
+    content="EATRIX is a transparent food delivery platform launching in Kompally, Hyderabad. 0% commission for restaurants, clear pricing for customers, and a fair model for delivery partners."
   />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,37 +14,38 @@
 
   <style>
     :root {
-      --red: #ef4444;
       --orange: #f97316;
-      --gold: #fb923c;
+      --orange-dark: #d9480f;
+      --orange-2: #fb923c;
+      --orange-soft: #fff2e8;
+      --orange-soft-2: #fff7f2;
       --black: #111827;
       --ink: #18181b;
       --ink-mid: #52525b;
       --ink-light: #71717a;
-      --rule: #e7ddd6;
+      --rule: #e8ddd5;
       --bg: #faf7f4;
       --bg-2: #fffdfb;
       --white: #ffffff;
       --card: rgba(255, 255, 255, 0.82);
-      --soft: #fff2ea;
-      --soft-2: #fff8f4;
       --shadow: 0 20px 60px rgba(17, 24, 39, 0.08);
-      --shadow-2: 0 12px 30px rgba(249, 115, 22, 0.12);
-      --radius: 20px;
+      --shadow-soft: 0 14px 35px rgba(249, 115, 22, 0.14);
+      --radius: 22px;
       --max: 1200px;
-      --gradient: linear-gradient(135deg, var(--orange), var(--red));
-      --gradient-soft: linear-gradient(135deg, rgba(249,115,22,.12), rgba(239,68,68,.10));
+      --gradient: linear-gradient(135deg, var(--orange-2), var(--orange));
+      --gradient-soft: linear-gradient(135deg, rgba(251,146,60,.14), rgba(249,115,22,.08));
+      --glass: rgba(255,255,255,.72);
+      --ease-smooth: cubic-bezier(.22,1,.36,1);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-
     body {
       font-family: 'DM Sans', sans-serif;
       background:
         radial-gradient(circle at 10% 10%, rgba(249,115,22,.10), transparent 28%),
-        radial-gradient(circle at 90% 10%, rgba(239,68,68,.08), transparent 22%),
-        radial-gradient(circle at 70% 70%, rgba(251,146,60,.08), transparent 24%),
+        radial-gradient(circle at 90% 8%, rgba(251,146,60,.08), transparent 22%),
+        radial-gradient(circle at 60% 72%, rgba(249,115,22,.06), transparent 24%),
         var(--bg);
       color: var(--ink);
       line-height: 1.7;
@@ -60,57 +61,105 @@
       margin: 0 auto;
     }
 
+    /* Advanced animated background */
+    .mesh {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -3;
+      overflow: hidden;
+    }
+
+    .mesh::before,
+    .mesh::after {
+      content: "";
+      position: absolute;
+      inset: -20%;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(249,115,22,.12), transparent 16%),
+        radial-gradient(circle at 80% 25%, rgba(251,146,60,.10), transparent 14%),
+        radial-gradient(circle at 50% 80%, rgba(249,115,22,.08), transparent 18%);
+      animation: meshShift 18s var(--ease-smooth) infinite alternate;
+      filter: blur(18px);
+    }
+
+    .mesh::after {
+      animation-duration: 24s;
+      animation-direction: alternate-reverse;
+      opacity: .8;
+    }
+
     .bg-orb {
       position: fixed;
       border-radius: 50%;
-      filter: blur(80px);
-      z-index: -1;
-      opacity: .35;
-      animation: floatOrb 14s ease-in-out infinite alternate;
+      filter: blur(90px);
+      z-index: -2;
+      opacity: .34;
       pointer-events: none;
+      animation: orbFloat 16s var(--ease-smooth) infinite alternate;
+      will-change: transform;
     }
 
     .orb-1 {
-      width: 220px;
-      height: 220px;
+      width: 240px;
+      height: 240px;
       background: rgba(249,115,22,.18);
-      top: 80px;
-      left: -40px;
+      top: 70px;
+      left: -50px;
     }
 
     .orb-2 {
-      width: 280px;
-      height: 280px;
-      background: rgba(239,68,68,.14);
-      right: -60px;
-      top: 260px;
+      width: 300px;
+      height: 300px;
+      background: rgba(251,146,60,.14);
+      right: -70px;
+      top: 240px;
       animation-delay: 2s;
     }
 
     .orb-3 {
-      width: 240px;
-      height: 240px;
-      background: rgba(251,146,60,.14);
-      left: 40%;
-      bottom: 60px;
+      width: 260px;
+      height: 260px;
+      background: rgba(249,115,22,.12);
+      left: 42%;
+      bottom: 30px;
       animation-delay: 4s;
+    }
+
+    .noise {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      opacity: .03;
+      background-image:
+        linear-gradient(to right, #000 1px, transparent 1px),
+        linear-gradient(to bottom, #000 1px, transparent 1px);
+      background-size: 4px 4px;
+      mix-blend-mode: multiply;
     }
 
     .topbar {
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: rgba(255,255,255,0.78);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(231,221,214,.85);
+      background: rgba(255,255,255,0.76);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(232,221,213,.86);
+      transition: background .35s ease, box-shadow .35s ease, border-color .35s ease;
+    }
+
+    .topbar.scrolled {
+      background: rgba(255,255,255,0.90);
+      box-shadow: 0 10px 30px rgba(17,24,39,.05);
     }
 
     .topbar-inner {
-      min-height: 72px;
+      min-height: 74px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
+      gap: 18px;
     }
 
     .brand {
@@ -124,9 +173,11 @@
       height: 46px;
       border-radius: 14px;
       object-fit: contain;
-      box-shadow: var(--shadow-2);
+      box-shadow: var(--shadow-soft);
       background: #fff;
       padding: 6px;
+      transform: translateZ(0);
+      animation: pulseGlow 4.5s ease-in-out infinite;
     }
 
     .brand-word {
@@ -149,19 +200,20 @@
     .nav {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 18px;
       flex-wrap: wrap;
     }
 
     .nav a {
       font-size: 14px;
       color: var(--ink-mid);
-      transition: 0.22s ease;
+      transition: color .22s ease, transform .22s ease;
       font-weight: 500;
     }
 
     .nav a:hover {
       color: var(--orange);
+      transform: translateY(-1px);
     }
 
     .btn {
@@ -175,9 +227,26 @@
       border: 1px solid transparent;
       font-size: 14px;
       font-weight: 700;
-      transition: .25s ease;
+      transition: transform .28s var(--ease-smooth), box-shadow .28s var(--ease-smooth), border-color .28s ease, color .28s ease;
       cursor: pointer;
       white-space: nowrap;
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .btn::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent 20%, rgba(255,255,255,.26) 45%, transparent 70%);
+      transform: translateX(-120%);
+      transition: transform .7s var(--ease-smooth);
+      z-index: -1;
+    }
+
+    .btn:hover::before {
+      transform: translateX(120%);
     }
 
     .btn:hover {
@@ -187,11 +256,15 @@
     .btn-primary {
       background: var(--gradient);
       color: var(--white);
-      box-shadow: 0 14px 35px rgba(239,68,68,.20);
+      box-shadow: 0 14px 35px rgba(249,115,22,.18);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 18px 42px rgba(249,115,22,.26);
     }
 
     .btn-secondary {
-      background: rgba(255,255,255,.8);
+      background: rgba(255,255,255,.82);
       color: var(--ink);
       border-color: var(--rule);
       box-shadow: var(--shadow);
@@ -203,7 +276,7 @@
     }
 
     .hero {
-      padding: 86px 0 60px;
+      padding: 88px 0 60px;
       position: relative;
     }
 
@@ -218,8 +291,8 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: var(--soft);
-      color: #c2410c;
+      background: var(--orange-soft);
+      color: var(--orange-dark);
       border: 1px solid #ffd8c7;
       border-radius: 999px;
       padding: 9px 14px;
@@ -228,20 +301,38 @@
       letter-spacing: 2.2px;
       text-transform: uppercase;
       margin-bottom: 20px;
+      animation: fadeUp .9s var(--ease-smooth) both;
     }
 
     .hero h1 {
       font-family: 'Playfair Display', serif;
       font-size: clamp(44px, 7vw, 74px);
-      line-height: 0.98;
+      line-height: .98;
       letter-spacing: -1.4px;
       color: var(--ink);
       margin-bottom: 18px;
-      max-width: 800px;
+      max-width: 820px;
+      animation: fadeUp 1s .08s var(--ease-smooth) both;
     }
 
     .hero h1 span {
       color: var(--orange);
+      position: relative;
+    }
+
+    .hero h1 span::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 4px;
+      height: 10px;
+      background: linear-gradient(90deg, rgba(249,115,22,.28), rgba(251,146,60,.16));
+      z-index: -1;
+      border-radius: 999px;
+      transform: scaleX(0);
+      transform-origin: left;
+      animation: underlineGrow .9s .8s var(--ease-smooth) forwards;
     }
 
     .hero p.lead {
@@ -249,17 +340,62 @@
       color: var(--ink-mid);
       max-width: 720px;
       margin-bottom: 28px;
+      animation: fadeUp 1s .16s var(--ease-smooth) both;
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-bottom: 22px;
+      margin-bottom: 16px;
+      animation: fadeUp 1s .24s var(--ease-smooth) both;
     }
 
     .hero-note {
       color: var(--ink-light);
+      font-size: 13px;
+      margin-bottom: 24px;
+      animation: fadeUp 1s .3s var(--ease-smooth) both;
+    }
+
+    .hero-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      animation: fadeUp 1s .38s var(--ease-smooth) both;
+    }
+
+    .hero-chip {
+      background: rgba(255,255,255,.82);
+      border: 1px solid var(--rule);
+      border-radius: 18px;
+      padding: 14px 16px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-chip::before {
+      content: "";
+      position: absolute;
+      inset: auto -20% -60% auto;
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle, rgba(249,115,22,.12), transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-chip strong {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      color: var(--orange);
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+
+    .hero-chip span {
+      color: var(--ink-mid);
       font-size: 13px;
     }
 
@@ -271,18 +407,28 @@
       box-shadow: var(--shadow);
       padding: 24px;
       overflow: hidden;
-      min-height: 560px;
+      min-height: 590px;
+      animation: floatCard 7s ease-in-out infinite;
     }
 
     .hero-panel::before {
       content: "";
       position: absolute;
-      width: 220px;
-      height: 220px;
+      width: 240px;
+      height: 240px;
       right: -50px;
       top: -50px;
       background: radial-gradient(circle, rgba(249,115,22,.18), transparent 68%);
       border-radius: 50%;
+      pointer-events: none;
+      animation: glowSpin 14s linear infinite;
+    }
+
+    .hero-panel::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(130deg, rgba(255,255,255,.28), transparent 35%, transparent 65%, rgba(255,255,255,.20));
       pointer-events: none;
     }
 
@@ -291,6 +437,7 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 18px;
+      gap: 12px;
     }
 
     .panel-badge {
@@ -299,16 +446,18 @@
       gap: 6px;
       padding: 8px 12px;
       border-radius: 999px;
-      background: var(--soft);
+      background: var(--orange-soft);
       border: 1px solid #ffd8c7;
-      color: #c2410c;
+      color: var(--orange-dark);
       font-size: 12px;
       font-weight: 700;
+      animation: badgePulse 3.4s ease-in-out infinite;
     }
 
     .showcase {
       position: relative;
-      min-height: 430px;
+      min-height: 450px;
+      perspective: 1200px;
     }
 
     .showcase-card {
@@ -320,14 +469,15 @@
       padding: 22px;
       box-shadow: var(--shadow);
       opacity: 0;
-      transform: translateY(20px) scale(.98);
-      transition: .65s ease;
+      transform: translateY(20px) rotateX(10deg) scale(.97);
+      transition: opacity .8s var(--ease-smooth), transform .8s var(--ease-smooth);
       pointer-events: none;
+      transform-origin: center bottom;
     }
 
     .showcase-card.active {
       opacity: 1;
-      transform: translateY(0) scale(1);
+      transform: translateY(0) rotateX(0deg) scale(1);
       pointer-events: auto;
     }
 
@@ -349,12 +499,19 @@
     }
 
     .mini-list li {
-      background: var(--soft-2);
+      background: var(--orange-soft-2);
       border: 1px solid #f2ddd2;
       border-radius: 12px;
       padding: 12px 14px;
       font-size: 14px;
       color: var(--ink-mid);
+      transform: translateX(0);
+      transition: transform .28s ease, border-color .28s ease;
+    }
+
+    .mini-list li:hover {
+      transform: translateX(4px);
+      border-color: #f3cdb7;
     }
 
     .mini-kpi {
@@ -369,6 +526,12 @@
       border: 1px solid var(--rule);
       border-radius: 14px;
       padding: 14px;
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+
+    .kpi:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 30px rgba(17,24,39,.06);
     }
 
     .kpi strong {
@@ -386,12 +549,13 @@
     }
 
     .section {
-      padding: 72px 0;
+      padding: 76px 0;
       border-top: 1px solid var(--rule);
+      position: relative;
     }
 
     .section-head {
-      max-width: 780px;
+      max-width: 820px;
       margin-bottom: 34px;
     }
 
@@ -417,25 +581,58 @@
       font-size: 16px;
     }
 
-    .cards-3 {
+    .cards-3,
+    .cards-4,
+    .two-col,
+    .legal-grid,
+    .footer-grid,
+    .faq-grid,
+    .trust-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
       gap: 18px;
     }
 
-    .card {
-      background: rgba(255,255,255,.82);
-      backdrop-filter: blur(8px);
+    .cards-3 { grid-template-columns: repeat(3, 1fr); }
+    .cards-4 { grid-template-columns: repeat(4, 1fr); }
+    .two-col,
+    .faq-grid,
+    .trust-grid { grid-template-columns: 1fr 1fr; }
+    .legal-grid { grid-template-columns: repeat(4, 1fr); }
+    .footer-grid { grid-template-columns: 1.2fr 0.8fr 0.8fr; }
+
+    .card,
+    .feature-panel,
+    .legal-card,
+    .faq-item,
+    .trust-box,
+    .comparison-wrap,
+    .launch-band,
+    .cta-band {
+      background: var(--glass);
+      backdrop-filter: blur(10px);
       border: 1px solid var(--rule);
-      border-radius: var(--radius);
       box-shadow: var(--shadow);
-      padding: 24px;
-      transition: .25s ease;
     }
 
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 50px rgba(17,24,39,.08);
+    .card,
+    .feature-panel,
+    .legal-card,
+    .faq-item,
+    .trust-box {
+      border-radius: var(--radius);
+      padding: 24px;
+      transition: transform .32s var(--ease-smooth), box-shadow .32s var(--ease-smooth), border-color .32s ease;
+      will-change: transform;
+    }
+
+    .card:hover,
+    .feature-panel:hover,
+    .legal-card:hover,
+    .faq-item:hover,
+    .trust-box:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 56px rgba(17,24,39,.10);
+      border-color: #efcec0;
     }
 
     .card .icon {
@@ -451,17 +648,48 @@
       font-size: 18px;
       font-weight: 800;
       margin-bottom: 14px;
+      position: relative;
+      overflow: hidden;
     }
 
-    .card h3 {
+    .card .icon::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(130deg, transparent 25%, rgba(255,255,255,.42) 50%, transparent 75%);
+      transform: translateX(-130%);
+      transition: transform .8s var(--ease-smooth);
+    }
+
+    .card:hover .icon::after {
+      transform: translateX(130%);
+    }
+
+    .card h3,
+    .feature-panel h3,
+    .launch-band h3,
+    .cta-band h3,
+    .trust-box h3 {
       font-family: 'Playfair Display', serif;
-      font-size: 24px;
+      font-size: 26px;
       margin-bottom: 10px;
     }
 
-    .card p {
+    .card p,
+    .feature-panel p,
+    .faq-item p,
+    .legal-card p,
+    .trust-box p,
+    .launch-band p,
+    .cta-band p {
       color: var(--ink-mid);
-      margin-bottom: 18px;
+    }
+
+    .card p,
+    .feature-panel p,
+    .legal-card p,
+    .trust-box p {
+      margin-bottom: 16px;
     }
 
     .list {
@@ -471,13 +699,19 @@
     }
 
     .list li {
-      background: rgba(255,255,255,.8);
+      background: rgba(255,255,255,.82);
       border: 1px solid var(--rule);
       border-radius: 12px;
       padding: 11px 12px 11px 34px;
       position: relative;
       color: var(--ink-mid);
       font-size: 14px;
+      transition: transform .24s ease, border-color .24s ease;
+    }
+
+    .list li:hover {
+      transform: translateX(4px);
+      border-color: #efd0bf;
     }
 
     .list li::before {
@@ -489,37 +723,7 @@
       height: 7px;
       border-radius: 50%;
       background: var(--orange);
-    }
-
-    .two-col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-    }
-
-    .feature-panel {
-      background: rgba(255,255,255,.84);
-      backdrop-filter: blur(8px);
-      border: 1px solid var(--rule);
-      border-radius: 20px;
-      padding: 24px;
-      box-shadow: var(--shadow);
-      transition: .25s ease;
-    }
-
-    .feature-panel:hover {
-      transform: translateY(-4px);
-    }
-
-    .feature-panel h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 27px;
-      margin-bottom: 10px;
-    }
-
-    .feature-panel p {
-      color: var(--ink-mid);
-      margin-bottom: 14px;
+      box-shadow: 0 0 0 4px rgba(249,115,22,.08);
     }
 
     .feature-panel .tag {
@@ -532,46 +736,125 @@
       font-weight: 800;
     }
 
+    .launch-band,
     .cta-band {
-      background: linear-gradient(135deg, rgba(255,245,239,.94), rgba(255,253,251,.96));
-      border: 1px solid var(--rule);
       border-radius: 24px;
       padding: 30px;
-      box-shadow: var(--shadow);
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 20px;
       flex-wrap: wrap;
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
     }
 
-    .cta-band h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 32px;
-      margin-bottom: 6px;
+    .launch-band::before,
+    .cta-band::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,245,239,.92), rgba(255,253,251,.96));
+      z-index: -2;
     }
 
-    .cta-band p {
-      color: var(--ink-mid);
+    .launch-band::after,
+    .cta-band::after {
+      content: "";
+      position: absolute;
+      right: -40px;
+      top: -40px;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(249,115,22,.12), transparent 70%);
+      z-index: -1;
+      animation: orbFloat 12s ease-in-out infinite alternate;
     }
 
-    .legal-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
+    .launch-tags {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 16px;
     }
 
-    .legal-card {
-      background: rgba(255,255,255,.84);
-      border: 1px solid var(--rule);
-      border-radius: 16px;
-      padding: 18px;
-      box-shadow: var(--shadow);
-      transition: .25s ease;
+    .launch-tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      padding: 0 14px;
+      border-radius: 999px;
+      background: var(--orange-soft);
+      color: var(--orange-dark);
+      border: 1px solid #ffd8c7;
+      font-size: 13px;
+      font-weight: 700;
     }
 
-    .legal-card:hover {
-      transform: translateY(-4px);
+    .comparison-wrap {
+      border-radius: 24px;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 720px;
+      background: rgba(255,255,255,.82);
+    }
+
+    th, td {
+      padding: 16px 18px;
+      text-align: left;
+      border-bottom: 1px solid var(--rule);
+      vertical-align: top;
+      font-size: 14px;
+    }
+
+    thead th {
+      background: #fffaf6;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1.3px;
+      color: var(--ink-light);
+    }
+
+    tbody tr:last-child td { border-bottom: none; }
+    .highlight-col {
+      background: linear-gradient(180deg, rgba(255,245,238,.92), rgba(255,252,248,.94));
+    }
+
+    .yes {
+      color: var(--orange-dark);
+      font-weight: 700;
+    }
+
+    .trust-box small,
+    .faq-item small {
+      color: var(--ink-light);
+      font-size: 13px;
+    }
+
+    .faq-item h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+      color: var(--ink);
+    }
+
+    .faq-item {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .faq-item::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(249,115,22,.03), transparent 50%);
+      pointer-events: none;
     }
 
     .legal-card h4 {
@@ -590,12 +873,6 @@
       border-top: 1px solid var(--rule);
       padding: 38px 0 44px;
       background: rgba(255,253,250,.9);
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr 0.8fr;
-      gap: 22px;
     }
 
     .footer h4 {
@@ -631,30 +908,70 @@
 
     .reveal {
       opacity: 0;
-      transform: translateY(26px);
-      transition: opacity .8s ease, transform .8s ease;
+      transform: translateY(32px) scale(.98);
+      transition: opacity .85s var(--ease-smooth), transform .85s var(--ease-smooth);
+      will-change: opacity, transform;
     }
 
     .reveal.show {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateY(0) scale(1);
     }
 
     .delay-1 { transition-delay: .08s; }
     .delay-2 { transition-delay: .16s; }
     .delay-3 { transition-delay: .24s; }
 
-    @keyframes floatOrb {
-      from { transform: translateY(0px) translateX(0px) scale(1); }
-      to   { transform: translateY(-24px) translateX(10px) scale(1.06); }
+    @keyframes meshShift {
+      0% { transform: translate3d(-1.5%, -1%, 0) scale(1); }
+      100% { transform: translate3d(2%, 1.5%, 0) scale(1.06); }
     }
 
-    @media (max-width: 1024px) {
+    @keyframes orbFloat {
+      0% { transform: translate3d(0, 0, 0) scale(1); }
+      100% { transform: translate3d(14px, -24px, 0) scale(1.07); }
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 12px 28px rgba(249,115,22,.14); }
+      50% { box-shadow: 0 18px 38px rgba(249,115,22,.22); }
+    }
+
+    @keyframes glowSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(26px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes underlineGrow {
+      from { transform: scaleX(0); }
+      to { transform: scaleX(1); }
+    }
+
+    @keyframes badgePulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+    }
+
+    @keyframes floatCard {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-5px); }
+    }
+
+    @media (max-width: 1080px) {
       .hero-grid,
       .cards-3,
+      .cards-4,
       .two-col,
       .legal-grid,
-      .footer-grid {
+      .footer-grid,
+      .faq-grid,
+      .trust-grid,
+      .hero-strip {
         grid-template-columns: 1fr;
       }
 
@@ -679,33 +996,57 @@
       }
 
       .hero {
-        padding-top: 38px;
+        padding-top: 40px;
       }
 
       .hero h1 {
         font-size: 38px;
       }
 
-      .section-head h2 {
-        font-size: 32px;
-      }
-
-      .cta-band h3 {
-        font-size: 26px;
+      .section-head h2,
+      .card h3,
+      .feature-panel h3,
+      .launch-band h3,
+      .cta-band h3,
+      .trust-box h3 {
+        font-size: 30px;
       }
 
       .brand-word {
         font-size: 24px;
       }
+
+      .showcase {
+        min-height: 520px;
+      }
+
+      .hero-panel {
+        min-height: 640px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
     }
   </style>
 </head>
 <body>
+  <div class="mesh"></div>
   <div class="bg-orb orb-1"></div>
   <div class="bg-orb orb-2"></div>
   <div class="bg-orb orb-3"></div>
+  <div class="noise"></div>
 
-  <header class="topbar">
+  <header class="topbar" id="topbar">
     <div class="container topbar-inner">
       <div class="brand">
         <img src="assets/logo.png" alt="EATRIX logo" class="brand-logo">
@@ -715,10 +1056,11 @@
 
       <nav class="nav">
         <a href="#about">About</a>
+        <a href="#benefits">Why EATRIX</a>
         <a href="#for-restaurants">Restaurants</a>
         <a href="#for-drivers">Drivers</a>
         <a href="#for-customers">Customers</a>
-        <a href="#legal">Legal</a>
+        <a href="#faq">FAQ</a>
         <a href="#join" class="btn btn-primary">Join Early</a>
       </nav>
     </div>
@@ -727,85 +1069,100 @@
   <main>
     <section class="hero">
       <div class="container hero-grid">
-        <div class="reveal">
-          <div class="eyebrow">Transparent. Fair. Pre-launch.</div>
-          <h1>Food delivery built <span>better</span> for restaurants, drivers, and customers.</h1>
+        <div>
+          <div class="eyebrow">Launching in Kompally, Hyderabad</div>
+          <h1>0% commission food delivery built <span>better</span> for restaurants, drivers, and customers.</h1>
           <p class="lead">
-            EATRIX is preparing to launch a cleaner food delivery model with transparent pricing, restaurant-friendly operations, and a fair experience for delivery partners.
+            EATRIX is building a transparent local delivery platform with fairer restaurant economics, clear customer pricing, and a more reliable experience for delivery partners.
           </p>
 
           <div class="hero-actions">
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLScVhDX82nlIQL2OzYRtZtCTkEjscmdvK-mqXE-IReYAvizzwQ/viewform" target="_blank" rel="noopener" class="btn btn-primary">Restaurant Pre-Registration</a>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_ahTpPofe1rfhEtbA1QAm_Ir-bqiuHJEvMmVtkS1dJggh8g/viewform" target="_blank" rel="noopener" class="btn btn-secondary">Driver Pre-Registration</a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScVhDX82nlIQL2OzYRtZtCTkEjscmdvK-mqXE-IReYAvizzwQ/viewform" target="_blank" rel="noopener" class="btn btn-primary">Apply as Founding Restaurant</a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_ahTpPofe1rfhEtbA1QAm_Ir-bqiuHJEvMmVtkS1dJggh8g/viewform" target="_blank" rel="noopener" class="btn btn-secondary">Apply as Delivery Partner</a>
           </div>
 
           <p class="hero-note">
-            We are currently in pre-launch. Early registrations are open for restaurant partners and delivery partners.
+            Pre-launch onboarding is open now. Customer ordering will open after launch rollout.
           </p>
+
+          <div class="hero-strip">
+            <div class="hero-chip">
+              <strong>0%</strong>
+              <span>Commission on food order value</span>
+            </div>
+            <div class="hero-chip">
+              <strong>Clear</strong>
+              <span>Pricing with no hidden checkout surprises</span>
+            </div>
+            <div class="hero-chip">
+              <strong>Phase 1</strong>
+              <span>Launch focus: Kompally, Hyderabad</span>
+            </div>
+          </div>
         </div>
 
         <div class="hero-panel reveal delay-1">
           <div class="panel-top">
-            <div class="panel-badge">Brand Showcase</div>
+            <div class="panel-badge">Platform Preview</div>
           </div>
 
           <div class="showcase" id="showcase">
             <div class="showcase-card active">
               <h3>For Restaurants</h3>
-              <p>A more structured onboarding approach for restaurant partners before launch.</p>
+              <p>Built to support restaurant growth with a cleaner commercial structure.</p>
               <ul class="mini-list">
-                <li>Early partner onboarding</li>
-                <li>Restaurant-focused launch preparation</li>
-                <li>Professional legal structure</li>
+                <li>0% commission on food order value</li>
+                <li>Early partner onboarding before launch</li>
+                <li>Transparent platform model</li>
               </ul>
               <div class="mini-kpi">
                 <div class="kpi">
-                  <strong>Pre</strong>
-                  <span>Launch registration open</span>
+                  <strong>0%</strong>
+                  <span>Commission on food value</span>
                 </div>
                 <div class="kpi">
-                  <strong>Clear</strong>
-                  <span>Partner onboarding path</span>
+                  <strong>Early</strong>
+                  <span>Partner access before launch</span>
                 </div>
               </div>
             </div>
 
             <div class="showcase-card">
               <h3>For Drivers</h3>
-              <p>Dedicated onboarding for delivery partners through a separate registration flow.</p>
+              <p>A simpler onboarding path with a platform built around operational clarity.</p>
               <ul class="mini-list">
-                <li>Separate driver registration form</li>
-                <li>Pre-launch driver interest capture</li>
-                <li>Operational onboarding later</li>
+                <li>Separate delivery partner registration flow</li>
+                <li>Dedicated onboarding before launch</li>
+                <li>Clear role-based communication</li>
               </ul>
               <div class="mini-kpi">
                 <div class="kpi">
-                  <strong>Driver</strong>
-                  <span>Registration available</span>
+                  <strong>Simple</strong>
+                  <span>Registration process</span>
                 </div>
                 <div class="kpi">
-                  <strong>Simple</strong>
-                  <span>Application flow</span>
+                  <strong>Fair</strong>
+                  <span>Driver-first platform direction</span>
                 </div>
               </div>
             </div>
 
             <div class="showcase-card">
               <h3>For Customers</h3>
-              <p>Even before launch, the customer promise should feel clean, simple, and trustworthy.</p>
+              <p>Customers will get a cleaner, more trustworthy ordering experience after launch.</p>
               <ul class="mini-list">
-                <li>Transparent pricing philosophy</li>
+                <li>Transparent checkout approach</li>
+                <li>Clear local launch communication</li>
                 <li>Simpler delivery experience</li>
-                <li>Clear brand positioning</li>
               </ul>
               <div class="mini-kpi">
                 <div class="kpi">
-                  <strong>Clean</strong>
-                  <span>Pre-launch communication</span>
+                  <strong>Local</strong>
+                  <span>Launch focused by area</span>
                 </div>
                 <div class="kpi">
-                  <strong>Brand</strong>
-                  <span>Full-scale presentation</span>
+                  <strong>Clean</strong>
+                  <span>Customer-first order flow</span>
                 </div>
               </div>
             </div>
@@ -816,47 +1173,110 @@
 
     <section class="section" id="about">
       <div class="container">
+        <div class="launch-band reveal">
+          <div>
+            <h3>Starting local. Building for scale.</h3>
+            <p>
+              EATRIX is launching first in Kompally, Hyderabad with a focused rollout model. This helps us onboard the right restaurant partners, build operational consistency, and create a better customer experience from day one.
+            </p>
+            <div class="launch-tags">
+              <span class="launch-tag">Kompally Launch</span>
+              <span class="launch-tag">Pre-Launch Onboarding Open</span>
+              <span class="launch-tag">Restaurant + Driver Focus</span>
+            </div>
+          </div>
+          <div>
+            <a href="#join" class="btn btn-primary">Join the Launch</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="benefits">
+      <div class="container">
         <div class="section-head reveal">
-          <div class="mini">About EATRIX</div>
-          <h2>A pre-launch homepage that feels like a full brand.</h2>
+          <div class="mini">Why EATRIX</div>
+          <h2>Clear positioning. Transparent model. Stronger local trust.</h2>
           <p>
-            Since EATRIX is not live yet, the website should act as a strong brand presence and early-registration engine. It should explain the concept clearly, feel polished, and direct visitors into the right registration flow.
+            The homepage should immediately explain why EATRIX exists and why restaurants, delivery partners, and customers should care.
           </p>
         </div>
 
-        <div class="cards-3">
+        <div class="cards-4">
           <div class="card reveal">
             <div class="icon">01</div>
-            <h3>Clear Positioning</h3>
-            <p>Make the platform identity obvious in the first screen so visitors instantly understand what EATRIX is.</p>
-            <ul class="list">
-              <li>Food delivery platform</li>
-              <li>Pre-launch onboarding</li>
-              <li>Customers, restaurants, and drivers</li>
-            </ul>
+            <h3>0% Commission</h3>
+            <p>Restaurants are not charged percentage-based commission on food order value.</p>
           </div>
 
           <div class="card reveal delay-1">
             <div class="icon">02</div>
-            <h3>Strong Brand Feel</h3>
-            <p>A premium-looking pre-launch website builds trust before the app is even publicly available.</p>
-            <ul class="list">
-              <li>Clean typography</li>
-              <li>Animation and motion</li>
-              <li>Professional page structure</li>
-            </ul>
+            <h3>Transparent Pricing</h3>
+            <p>Customer pricing should feel clean, clear, and understandable at checkout.</p>
           </div>
 
           <div class="card reveal delay-2">
             <div class="icon">03</div>
-            <h3>Trust & Legal</h3>
-            <p>Policy pages and proper links make the site feel complete and credible.</p>
-            <ul class="list">
-              <li>Privacy Policy</li>
-              <li>Terms &amp; Conditions</li>
-              <li>Support contact</li>
-            </ul>
+            <h3>Local Launch Focus</h3>
+            <p>Starting with a controlled area gives better operational discipline and trust.</p>
           </div>
+
+          <div class="card reveal delay-3">
+            <div class="icon">04</div>
+            <h3>Complete Brand Presence</h3>
+            <p>Legal pages, registration flows, and support details make the platform feel real before launch.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="comparison">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="mini">Comparison</div>
+          <h2>What makes EATRIX different.</h2>
+          <p>
+            This section gives visitors a fast, direct comparison of your positioning.
+          </p>
+        </div>
+
+        <div class="comparison-wrap reveal">
+          <table>
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th class="highlight-col">EATRIX</th>
+                <th>Typical Marketplace Model</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Commission on food value</td>
+                <td class="highlight-col"><span class="yes">0% commission</span></td>
+                <td>Often percentage-based</td>
+              </tr>
+              <tr>
+                <td>Launch structure</td>
+                <td class="highlight-col">Local, phased rollout</td>
+                <td>Broad expansion focus</td>
+              </tr>
+              <tr>
+                <td>Checkout positioning</td>
+                <td class="highlight-col">Clear pricing direction</td>
+                <td>Can feel fee-heavy</td>
+              </tr>
+              <tr>
+                <td>Restaurant message</td>
+                <td class="highlight-col">Partner-first commercial model</td>
+                <td>Platform-first economics</td>
+              </tr>
+              <tr>
+                <td>Pre-launch onboarding</td>
+                <td class="highlight-col"><span class="yes">Open now</span></td>
+                <td>Not always available</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </section>
@@ -865,9 +1285,9 @@
       <div class="container">
         <div class="section-head reveal">
           <div class="mini">For Restaurants</div>
-          <h2>Restaurant onboarding should feel direct and premium.</h2>
+          <h2>Restaurant onboarding should feel direct, premium, and commercially clear.</h2>
           <p>
-            This section speaks to restaurant owners who want to understand the platform before launch and join early.
+            Restaurant owners should understand the value quickly and know exactly where to register.
           </p>
         </div>
 
@@ -875,8 +1295,9 @@
           <div class="feature-panel reveal">
             <div class="tag">Restaurant Partner</div>
             <h3>Why restaurants should join early</h3>
-            <p>Explain the restaurant-side value proposition in a concise and confident format.</p>
+            <p>Keep this section specific and conversion-focused.</p>
             <ul class="list">
+              <li>0% commission on food order value</li>
               <li>Early onboarding before launch</li>
               <li>Structured commercial model</li>
               <li>Professional legal framework</li>
@@ -886,8 +1307,8 @@
 
           <div class="feature-panel reveal delay-1">
             <div class="tag">Action</div>
-            <h3>Restaurant pre-registration</h3>
-            <p>This opens your restaurant Google Form directly.</p>
+            <h3>Apply as a founding restaurant partner</h3>
+            <p>This opens the restaurant pre-registration form directly.</p>
             <div style="margin-top:18px;">
               <a href="https://docs.google.com/forms/d/e/1FAIpQLScVhDX82nlIQL2OzYRtZtCTkEjscmdvK-mqXE-IReYAvizzwQ/viewform" target="_blank" rel="noopener" class="btn btn-primary">Open Restaurant Form</a>
             </div>
@@ -899,30 +1320,30 @@
     <section class="section" id="for-drivers">
       <div class="container">
         <div class="section-head reveal">
-          <div class="mini">For Drivers</div>
+          <div class="mini">For Delivery Partners</div>
           <h2>Simple pre-launch registration for delivery partners.</h2>
           <p>
-            Keep the driver flow separate and clear. It should feel like a distinct onboarding path.
+            Keep the driver path separate, easy to understand, and operationally clear.
           </p>
         </div>
 
         <div class="two-col">
           <div class="feature-panel reveal">
             <div class="tag">Delivery Partner</div>
-            <h3>Driver onboarding before launch</h3>
-            <p>Delivery partners can register early and be contacted during rollout and onboarding.</p>
+            <h3>Why drivers should join early</h3>
+            <p>Make the pre-launch path feel credible and structured.</p>
             <ul class="list">
-              <li>Early partner registration</li>
+              <li>Early delivery partner registration</li>
               <li>Separate onboarding process</li>
-              <li>Platform communication before launch</li>
+              <li>Role-specific communication before launch</li>
               <li>Dedicated driver interest form</li>
             </ul>
           </div>
 
           <div class="feature-panel reveal delay-1">
             <div class="tag">Action</div>
-            <h3>Driver pre-registration</h3>
-            <p>This opens your driver Google Form directly.</p>
+            <h3>Apply as a delivery partner</h3>
+            <p>This opens the delivery partner form directly.</p>
             <div style="margin-top:18px;">
               <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_ahTpPofe1rfhEtbA1QAm_Ir-bqiuHJEvMmVtkS1dJggh8g/viewform" target="_blank" rel="noopener" class="btn btn-primary">Open Driver Form</a>
             </div>
@@ -937,7 +1358,7 @@
           <div class="mini">For Customers</div>
           <h2>Show the customer promise before launch.</h2>
           <p>
-            Customers cannot order yet, so this section should communicate what they can expect once EATRIX goes live.
+            Customers cannot order yet, so this section should explain what they can expect once EATRIX goes live.
           </p>
         </div>
 
@@ -945,19 +1366,51 @@
           <div class="card reveal">
             <div class="icon">A</div>
             <h3>Transparent Checkout</h3>
-            <p>Present EATRIX as a platform that values straightforward pricing and clarity.</p>
+            <p>Position EATRIX as a platform that values straightforward pricing and clarity.</p>
           </div>
 
           <div class="card reveal delay-1">
             <div class="icon">B</div>
             <h3>Cleaner Experience</h3>
-            <p>Explain that the platform is being built for a simpler ordering experience.</p>
+            <p>Build trust through simpler order flow, clearer communication, and local focus.</p>
           </div>
 
           <div class="card reveal delay-2">
             <div class="icon">C</div>
             <h3>Launch Updates</h3>
-            <p>You can later add a waitlist here if you want customer registrations before launch.</p>
+            <p>You can later replace this with a customer waitlist or early-access signup.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="trust">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="mini">Trust</div>
+          <h2>Add credibility before the app is live.</h2>
+          <p>
+            A pre-launch website still needs signals that the platform is real, intentional, and professionally structured.
+          </p>
+        </div>
+
+        <div class="trust-grid">
+          <div class="trust-box reveal">
+            <h3>Why visitors should trust EATRIX</h3>
+            <p>
+              EATRIX already presents a legal structure, clear partner forms, support contact, and policy pages. That makes the platform feel operational instead of conceptual.
+            </p>
+            <small>Use this area later for founder note, partner logos, or first onboarded restaurants.</small>
+          </div>
+
+          <div class="trust-box reveal delay-1">
+            <h3>Suggested next trust upgrades</h3>
+            <ul class="list">
+              <li>Add “Launching in Kompally” more prominently</li>
+              <li>Add restaurant partner logos once available</li>
+              <li>Add founder message or company note</li>
+              <li>Add early partner count or rollout milestones</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -978,12 +1431,56 @@
       </div>
     </section>
 
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="mini">FAQ</div>
+          <h2>Answer the obvious questions directly.</h2>
+          <p>
+            This helps reduce confusion and makes the site feel more complete.
+          </p>
+        </div>
+
+        <div class="faq-grid">
+          <div class="faq-item reveal">
+            <h3>Is EATRIX live right now?</h3>
+            <p>No. EATRIX is currently in pre-launch. Restaurant and delivery partner registrations are open now.</p>
+          </div>
+
+          <div class="faq-item reveal delay-1">
+            <h3>Where is EATRIX launching first?</h3>
+            <p>The initial rollout is focused on Kompally, Hyderabad.</p>
+          </div>
+
+          <div class="faq-item reveal delay-2">
+            <h3>Can customers place orders now?</h3>
+            <p>Not yet. Customer ordering will open after the platform goes live.</p>
+          </div>
+
+          <div class="faq-item reveal delay-3">
+            <h3>How do restaurants join?</h3>
+            <p>Restaurants can apply through the dedicated pre-registration form linked on this page.</p>
+          </div>
+
+          <div class="faq-item reveal">
+            <h3>How do delivery partners join?</h3>
+            <p>Delivery partners can apply through the separate driver registration form.</p>
+          </div>
+
+          <div class="faq-item reveal delay-1">
+            <h3>Where can users find legal information?</h3>
+            <p>Your Privacy Policy and Terms &amp; Conditions are linked below in the legal section and footer.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="section" id="legal">
       <div class="container">
         <div class="section-head reveal">
           <div class="mini">Legal &amp; Policy</div>
           <h2>Keep the pre-launch site complete and credible.</h2>
-          <p>These links should point to your live local policy pages.</p>
+          <p>These links should point to your live policy pages and registration flows.</p>
         </div>
 
         <div class="legal-grid">
@@ -995,7 +1492,7 @@
 
           <div class="legal-card reveal delay-1">
             <h4>Terms &amp; Conditions</h4>
-            <p>Platform terms for customers, restaurants, and drivers.</p>
+            <p>Platform terms for customers, restaurants, and delivery partners.</p>
             <a href="./terms.html" class="btn btn-secondary">Open Terms</a>
           </div>
 
@@ -1022,7 +1519,7 @@
           <div class="brand" style="margin-bottom:12px;">
             <img src="assets/logo.png" alt="EATRIX logo" class="brand-logo">
             <div class="brand-word">EATRIX</div>
-            <div class="brand-tag">Pre-launch</div>
+            <div class="brand-tag">Pre-Launch</div>
           </div>
           <p>
             EATRIX Technologies LLP is building a transparent food delivery platform for customers, restaurants, and delivery partners.
@@ -1033,9 +1530,11 @@
           <h4>Quick Links</h4>
           <ul>
             <li><a href="#about">About</a></li>
+            <li><a href="#benefits">Why EATRIX</a></li>
             <li><a href="#for-restaurants">Restaurants</a></li>
             <li><a href="#for-drivers">Drivers</a></li>
             <li><a href="#for-customers">Customers</a></li>
+            <li><a href="#faq">FAQ</a></li>
           </ul>
         </div>
 
@@ -1059,18 +1558,29 @@
   </footer>
 
   <script>
+    const topbar = document.getElementById('topbar');
     const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
+    const showcaseCards = document.querySelectorAll('.showcase-card');
+    let showcaseIndex = 0;
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 12) {
+        topbar.classList.add('scrolled');
+      } else {
+        topbar.classList.remove('scrolled');
+      }
+    });
+
+    const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('show');
+          revealObserver.unobserve(entry.target);
         }
       });
     }, { threshold: 0.12 });
-    reveals.forEach(el => observer.observe(el));
 
-    const showcaseCards = document.querySelectorAll('.showcase-card');
-    let showcaseIndex = 0;
+    reveals.forEach(el => revealObserver.observe(el));
 
     function rotateShowcase() {
       showcaseCards.forEach((card, i) => {
@@ -1080,7 +1590,7 @@
     }
 
     if (showcaseCards.length) {
-      setInterval(rotateShowcase, 3200);
+      setInterval(rotateShowcase, 3600);
     }
   </script>
 </body>
