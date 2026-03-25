@@ -578,7 +578,7 @@
       <div class="container hero-grid">
         <div class="reveal">
           <span class="eyebrow">🚀 Launching Soon • Kompally, Hyderabad</span>
-          <h1>Fair Food Delivery for Restaurants, Drivers & Customers.</h1>
+          <h1>Fair Food Delivery for Restaurants, Drivers &amp; Customers.</h1>
           <p class="lead">
             EATRIX is building a transparent local delivery ecosystem with
             <strong>no commission on order value for restaurants</strong>, fair onboarding for delivery partners,
@@ -699,7 +699,7 @@
                   <div class="mock-card dark">
                     <div class="mock-row">
                       <span>Total</span>
-                      <strong>Clear & Trackable</strong>
+                      <strong>Clear &amp; Trackable</strong>
                     </div>
                   </div>
                 </div>
@@ -845,7 +845,7 @@
         <div class="grid-4">
           <div class="card reveal">
             <div class="icon">1</div>
-            <h3>Browse & Order</h3>
+            <h3>Browse &amp; Order</h3>
             <p>Customers place orders from nearby listed restaurants.</p>
           </div>
           <div class="card reveal">
@@ -963,8 +963,8 @@
 
       <div class="footer-links">
         <strong>Legal</strong>
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="terms.html">Terms & Conditions</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms-and-conditions.html">Terms &amp; Conditions</a>
         <a href="partner-registration.html">Restaurant Registration</a>
         <a href="driver-registration.html">Driver Registration</a>
       </div>
@@ -1008,7 +1008,14 @@
 
       const now = new Date().getTime();
       const diff = launchDate.getTime() - now;
-      if (diff <= 0) return;
+
+      if (diff <= 0) {
+        document.getElementById('days').textContent = '00';
+        document.getElementById('hours').textContent = '00';
+        document.getElementById('minutes').textContent = '00';
+        document.getElementById('seconds').textContent = '00';
+        return;
+      }
 
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
       const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
