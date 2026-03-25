@@ -1,504 +1,191 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EATRIX — Fair Food Delivery, Launching Soon</title>
-  <meta name="description" content="EATRIX is a transparent food delivery platform built for customers, restaurants, and delivery partners. Launching soon." />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --red: #ef4444;
-      --orange: #f97316;
-      --black: #111827;
-      --ink: #1a1a1a;
-      --ink-mid: #444;
-      --ink-light: #777;
-      --rule: #e8e0da;
-      --bg: #faf8f6;
-      --white: #ffffff;
-      --card: #fffdfb;
-      --soft: #fff1eb;
-      --soft-2: #fff7f3;
-      --shadow: 0 10px 30px rgba(17, 24, 39, 0.06);
-      --radius: 16px;
-      --max: 1180px;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--bg);
-      color: var(--ink);
-      line-height: 1.7;
-      font-size: 15px;
-    }
-
-    a { text-decoration: none; color: inherit; }
-    img { max-width: 100%; display: block; }
-
-    .container {
-      width: min(var(--max), calc(100% - 40px));
-      margin: 0 auto;
-    }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--rule);
-    }
-
-    .topbar-inner {
-      min-height: 68px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .brand-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 28px;
-      font-weight: 700;
-      color: var(--orange);
-      letter-spacing: -0.5px;
-    }
-
-    .brand-tag {
-      font-size: 11px;
-      letter-spacing: 1.8px;
-      text-transform: uppercase;
-      color: var(--ink-light);
-      border-left: 1px solid var(--rule);
-      padding-left: 12px;
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .nav a {
-      font-size: 14px;
-      color: var(--ink-mid);
-      transition: 0.2s ease;
-    }
-
-    .nav a:hover {
-      color: var(--orange);
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      min-height: 46px;
-      padding: 0 18px;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      font-size: 14px;
-      font-weight: 600;
-      transition: 0.2s ease;
-      cursor: pointer;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--orange), var(--red));
-      color: var(--white);
-      box-shadow: var(--shadow);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-1px);
-      opacity: 0.96;
-    }
-
-    .btn-secondary {
-      background: var(--white);
-      color: var(--ink);
-      border-color: var(--rule);
-    }
-
-    .btn-secondary:hover {
-      border-color: var(--orange);
-      color: var(--orange);
-    }
-
-    .hero {
-      padding: 72px 0 56px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 36px;
-      align-items: center;
-    }
-
-    .eyebrow {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 2.4px;
-      text-transform: uppercase;
-      color: var(--orange);
-      background: var(--soft);
-      border: 1px solid #ffd8c7;
-      border-radius: 999px;
-      padding: 8px 12px;
-      margin-bottom: 18px;
-    }
-
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 60px;
-      line-height: 1.04;
-      letter-spacing: -1px;
-      color: var(--ink);
-      margin-bottom: 18px;
-    }
-
-    .hero h1 span {
-      color: var(--orange);
-    }
-
-    .hero p.lead {
-      font-size: 18px;
-      color: var(--ink-mid);
-      max-width: 720px;
-      margin-bottom: 28px;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-
-    .hero-note {
-      color: var(--ink-light);
-      font-size: 13px;
-    }
-
-    .hero-card {
-      background: linear-gradient(180deg, #fffdfc, #fff7f2);
-      border: 1px solid var(--rule);
-      border-radius: 22px;
-      box-shadow: var(--shadow);
-      padding: 26px;
-    }
-
-    .hero-stat-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-      margin-top: 18px;
-    }
-
-    .stat {
-      background: var(--white);
-      border: 1px solid var(--rule);
-      border-radius: 14px;
-      padding: 18px;
-    }
-
-    .stat .k {
-      font-family: 'Playfair Display', serif;
-      font-size: 28px;
-      color: var(--orange);
-      line-height: 1.1;
-      margin-bottom: 6px;
-    }
-
-    .stat .v {
-      font-size: 13px;
-      color: var(--ink-mid);
-    }
-
-    .section {
-      padding: 68px 0;
-      border-top: 1px solid var(--rule);
-    }
-
-    .section-head {
-      max-width: 760px;
-      margin-bottom: 32px;
-    }
-
-    .section-head .mini {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: var(--orange);
-      font-weight: 700;
+ font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      line-height: 1.2;
       margin-bottom: 10px;
+      color: var(--ink);
+
     }
 
-    .section-head h2 {
+    .step p {
+      color: var(--ink-mid);
+      font-size: 14px;
+      line-height: 1.75;
+    }
+
+    /* CTA */
+    .cta-box {
+      background: linear-gradient(135deg, #fff3eb 0%, #fff 50%, #fff7f2 100%);
+      border: 1px solid #ffdccc;
+      border-radius: 28px;
+      padding: 34px;
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 22px;
+      align-items: center;
+    }
+
+    .cta-box h2 {
       font-family: 'Playfair Display', serif;
-      font-size: 40px;
-      line-height: 1.12;
+      font-size: 36px;
+      line-height: 1.15;
       letter-spacing: -0.6px;
       margin-bottom: 12px;
-    }
-
-    .section-head p {
-      color: var(--ink-mid);
-      font-size: 16px;
-    }
-
-    .cards-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--rule);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 24px;
-    }
-
-    .card .icon {
-      width: 46px;
-      height: 46px;
-      border-radius: 12px;
-      background: var(--soft);
-      border: 1px solid #ffd8c7;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--orange);
-      font-size: 20px;
-      margin-bottom: 14px;
-    }
-
-    .card h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 24px;
-      margin-bottom: 10px;
       color: var(--ink);
     }
 
-    .card p {
+    .cta-box p {
       color: var(--ink-mid);
-      margin-bottom: 18px;
+      font-size: 16px;
+      line-height: 1.8;
     }
 
-    .list {
-      list-style: none;
-      display: grid;
-      gap: 10px;
-    }
-
-    .list li {
-      background: var(--white);
-      border: 1px solid var(--rule);
-      border-radius: 10px;
-      padding: 10px 12px 10px 34px;
-      position: relative;
-      color: var(--ink-mid);
-      font-size: 14px;
-    }
-
-    .list li::before {
-      content: '';
-      position: absolute;
-      left: 14px;
-      top: 17px;
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--orange);
-    }
-
-    .two-col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-    }
-
-    .feature-panel {
-      background: var(--white);
-      border: 1px solid var(--rule);
-      border-radius: 18px;
-      padding: 24px;
-      box-shadow: var(--shadow);
-    }
-
-    .feature-panel h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 26px;
-      margin-bottom: 10px;
-    }
-
-    .feature-panel p {
-      color: var(--ink-mid);
-      margin-bottom: 14px;
-    }
-
-    .feature-panel .tag {
-      display: inline-block;
-      margin-bottom: 14px;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 1.6px;
-      color: var(--orange);
-      font-weight: 700;
-    }
-
-    .cta-band {
-      background: linear-gradient(135deg, #fff5ef, #fffdfb);
-      border: 1px solid var(--rule);
-      border-radius: 24px;
-      padding: 30px;
-      box-shadow: var(--shadow);
+    .cta-actions {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
       flex-wrap: wrap;
+      gap: 12px;
+      justify-content: flex-end;
     }
 
-    .cta-band h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 30px;
-      margin-bottom: 6px;
-    }
-
-    .cta-band p {
-      color: var(--ink-mid);
-    }
-
-    .legal-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-    }
-
-    .legal-card {
-      background: var(--white);
-      border: 1px solid var(--rule);
-      border-radius: 14px;
-      padding: 18px;
-      box-shadow: var(--shadow);
-    }
-
-    .legal-card h4 {
-      font-size: 16px;
-      color: var(--ink);
-      margin-bottom: 6px;
-    }
-
-    .legal-card p {
-      font-size: 13px;
-      color: var(--ink-light);
-      margin-bottom: 12px;
-    }
-
+    /* footer */
     .footer {
+      padding: 46px 0 36px;
+      margin-top: 30px;
       border-top: 1px solid var(--rule);
-      padding: 36px 0 44px;
-      background: #fffdfa;
     }
 
     .footer-grid {
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr 0.8fr;
-      gap: 22px;
+      grid-template-columns: 1.2fr 0.8fr 0.8fr 0.8fr;
+      gap: 24px;
     }
 
-    .footer h4 {
-      font-size: 14px;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      color: var(--ink-light);
-      margin-bottom: 12px;
+    .footer-brand h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      color: var(--orange);
+      margin-bottom: 10px;
     }
 
-    .footer p, .footer li, .footer a {
+    .footer-brand p,
+    .footer-col a,
+    .footer-col p {
       color: var(--ink-mid);
       font-size: 14px;
+      line-height: 1.75;
     }
 
-    .footer ul {
-      list-style: none;
+    .footer-col h4 {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1.6px;
+      color: var(--ink-light);
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    .footer-links {
       display: grid;
       gap: 8px;
     }
 
-    .copyright {
-      border-top: 1px solid var(--rule);
-      margin-top: 22px;
+    .footer-bottom {
+      margin-top: 24px;
       padding-top: 18px;
-      font-size: 13px;
+      border-top: 1px solid var(--rule);
       color: var(--ink-light);
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
+      font-size: 13px;
     }
 
-    @media (max-width: 1024px) {
+    /* responsive */
+    @media (max-width: 1100px) {
       .hero-grid,
-      .cards-3,
-      .two-col,
-      .legal-grid,
+      .cta-box,
+      .value-grid,
+      .audience-grid,
+      .steps,
+      .trust-box,
       .footer-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
       }
 
-      .hero h1 {
-        font-size: 46px;
+      .hero-grid .hero-copy {
+        grid-column: 1 / -1;
+      }
+
+      .hero-grid .hero-panel {
+        grid-column: 1 / -1;
       }
     }
 
-    @media (max-width: 760px) {
-      .container {
-        width: min(var(--max), calc(100% - 24px));
-      }
-
+    @media (max-width: 860px) {
       .topbar-inner {
-        align-items: flex-start;
+        height: auto;
         padding: 14px 0;
-        flex-direction: column;
+        flex-wrap: wrap;
       }
 
       .nav {
-        gap: 12px;
+        width: 100%;
+        justify-content: flex-start;
+        gap: 14px;
       }
 
-      .hero {
-        padding-top: 36px;
+      h1 {
+        font-size: 40px;
       }
 
-      .hero h1 {
-        font-size: 38px;
+      .section-title {
+        font-size: 30px;
       }
 
-      .section-head h2 {
-        font-size: 32px;
+      .value-grid,
+      .audience-grid,
+      .steps,
+      .trust-box,
+      .footer-grid,
+      .cta-box,
+      .mini-grid {
+        grid-template-columns: 1fr;
       }
 
-      .cta-band h3 {
-        font-size: 26px;
+      .hero-copy,
+      .hero-panel {
+        padding: 24px;
+      }
+
+      .cta-actions {
+        justify-content: flex-start;
+      }
+
+      .container {
+        width: min(var(--max), calc(100% - 24px));
+      }
+    }
+
+    @media (max-width: 580px) {
+      .nav-actions {
+        width: 100%;
+      }
+
+      .nav-actions .btn {
+        flex: 1;
+      }
+
+      h1 {
+        font-size: 34px;
+
+      }
+
+      .hero-lead,
+      .section-text,
+      .cta-box p {
+        font-size: 15px;
+      }
+
+      .btn {
+        min-height: 44px;
+        padding: 0 14px;
       }
     }
   </style>
@@ -507,316 +194,80 @@
 
   <header class="topbar">
     <div class="container topbar-inner">
-      <div class="brand">
-        <div class="brand-logo">EATRIX</div>
-        <div class="brand-tag">Launching Soon</div>
-      </div>
+      <a href="#" class="brand">
+        <div class="brand-mark">E</div>
+        <div class="brand-text">
+          <span class="brand-name">EATRIX</span>
+          <span class="brand-sub">Fair Food Delivery</span>
+        </div>
+      </a>
 
       <nav class="nav">
-        <a href="#about">About</a>
-        <a href="#for-restaurants">Restaurants</a>
-        <a href="#for-drivers">Drivers</a>
-        <a href="#for-customers">Customers</a>
-        <a href="#legal">Legal</a>
-        <a href="#join" class="btn btn-primary">Join Early</a>
+        <a href="#why">Why EATRIX</a>
+        <a href="#restaurants">Restaurants</a>
+        <a href="#drivers">Drivers</a>
+        <a href="#customers">Customers</a>
+
+        <a href="#how">How It Works</a>
+        <a href="#contact">Contact</a>
       </nav>
+
+      <div class="nav-actions">
+        <a href="#register" class="btn btn-secondary">Get Updates</a>
+        <a href="#register" class="btn btn-primary">Pre-Register</a>
+      </div>
     </div>
   </header>
 
   <main>
     <section class="hero">
       <div class="container hero-grid">
-        <div>
-          <div class="eyebrow">Transparent. Fair. Pre-launch.</div>
-          <h1>Food delivery built <span>better</span> for restaurants, drivers, and customers.</h1>
-          <p class="lead">
-            EATRIX is preparing to launch a cleaner food delivery model with transparent pricing, restaurant-friendly operations, and a fair experience for delivery partners.
+        <div class="hero-copy">
+          <div class="eyebrow">Built for restaurants, drivers, and customers</div>
+          <h1>Food delivery with <span class="accent">clear pricing</span> and a fairer model.</h1>
+          <p class="hero-lead">
+            EATRIX is building a transparent local delivery platform designed to reduce commission pressure for restaurants, create better operational clarity for delivery partners, and make checkout simpler for customers.
+
+
           </p>
 
           <div class="hero-actions">
-            <a href="YOUR_RESTAURANT_GOOGLE_FORM_LINK" target="_blank" rel="noopener" class="btn btn-primary">Restaurant Pre-Registration</a>
-            <a href="YOUR_DRIVER_GOOGLE_FORM_LINK" target="_blank" rel="noopener" class="btn btn-secondary">Driver Pre-Registration</a>
+            <a href="#register" class="btn btn-primary">Join the Founding Network</a>
+            <a href="#how" class="btn btn-secondary">See How It Works</a>
           </div>
 
-          <p class="hero-note">
-            We are currently in pre-launch. Early registrations are open for restaurant partners and delivery partners.
-          </p>
+          <div class="hero-points">
+            <span class="pill">No commission on food order value</span>
+            <span class="pill">Transparent checkout</span>
+            <span class="pill">Driver-first operations</span>
+            <span class="pill">Hyperlocal rollout</span>
+          </div>
         </div>
 
-        <div class="hero-card">
-          <div class="eyebrow" style="margin-bottom:12px;">What EATRIX stands for</div>
-          <p style="color:var(--ink-mid); margin-bottom: 10px;">
-            A simple model: clear pricing for customers, better value for restaurants, and a structured onboarding path for delivery partners.
-          </p>
-
-          <div class="hero-stat-grid">
-            <div class="stat">
-              <div class="k">Pre-Launch</div>
-              <div class="v">Currently onboarding early partners before public launch.</div>
-            </div>
-            <div class="stat">
-              <div class="k">Clear Pricing</div>
-              <div class="v">Simple, transparent customer-facing charges.</div>
-            </div>
-            <div class="stat">
-              <div class="k">Restaurant Focus</div>
-              <div class="v">Built to support restaurant economics more clearly.</div>
-            </div>
-            <div class="stat">
-              <div class="k">Driver Access</div>
-              <div class="v">Dedicated onboarding for delivery partners.</div>
+        <aside class="hero-panel">
+          <div class="panel-card">
+            <div class="panel-title">Customer checkout preview</div>
+            <div class="price-preview">
+              <div class="price-row"><span>Food subtotal</span><strong>₹300</strong></div>
+              <div class="price-row"><span>Delivery fee</span><strong>₹50</strong></div>
+              <div class="price-row"><span>Taxes</span><strong>Shown clearly</strong></div>
+              <div class="price-total"><span>Total payable</span><span>Visible before payment</span></div>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
 
-    <section class="section" id="about">
-      <div class="container">
-        <div class="section-head">
-          <div class="mini">About EATRIX</div>
-          <h2>A homepage structure that fits a pre-launch brand.</h2>
-          <p>
-            Since you are not live yet, the homepage should not behave like a full ordering platform. It should behave like a strong pre-launch landing page: explain the concept clearly, build trust, and collect early registrations.
-          </p>
-        </div>
-
-        <div class="cards-3">
-          <div class="card">
-            <div class="icon">01</div>
-            <h3>Clear Positioning</h3>
-            <p>Tell visitors exactly what EATRIX is and who it is for within the first screen.</p>
-            <ul class="list">
-              <li>Food delivery platform</li>
-              <li>Pre-launch onboarding</li>
-              <li>Restaurants, drivers, customers</li>
-            </ul>
-          </div>
-
-          <div class="card">
-            <div class="icon">02</div>
-            <h3>Early Action</h3>
-            <p>Since ordering is not live yet, the main conversion should be registration, interest, and early partner sign-up.</p>
-            <ul class="list">
-              <li>Restaurant form</li>
-              <li>Driver form</li>
-              <li>Launch updates</li>
-            </ul>
-          </div>
-
-          <div class="card">
-            <div class="icon">03</div>
-            <h3>Trust & Legal</h3>
-            <p>Pre-launch pages should still look complete and credible with policy links and company information.</p>
-            <ul class="list">
-              <li>Privacy Policy</li>
-              <li>Terms & Conditions</li>
-              <li>Support contact</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="for-restaurants">
-      <div class="container">
-        <div class="section-head">
-          <div class="mini">For Restaurants</div>
-          <h2>A cleaner onboarding path for restaurant partners.</h2>
-          <p>
-            This section should speak directly to restaurant owners who want to understand the platform before launch and register their interest early.
-          </p>
-        </div>
-
-        <div class="two-col">
-          <div class="feature-panel">
-            <div class="tag">Restaurant Partner</div>
-            <h3>Why restaurants should join early</h3>
-            <p>Use this block to explain the restaurant-side value proposition in a direct and simple format.</p>
-            <ul class="list">
-              <li>Early onboarding before launch</li>
-              <li>Structured commercial model</li>
-              <li>Clear legal and policy framework</li>
-              <li>Dedicated registration form</li>
-            </ul>
-          </div>
-
-          <div class="feature-panel">
-            <div class="tag">Action</div>
-            <h3>Restaurant pre-registration</h3>
-            <p>
-              Link this button to your restaurant Google Form. This should be one of the main homepage actions until launch.
-            </p>
-            <div style="margin-top:18px;">
-              <a href="YOUR_RESTAURANT_GOOGLE_FORM_LINK" target="_blank" rel="noopener" class="btn btn-primary">Open Restaurant Form</a>
+          <div class="mini-grid">
+            <div class="mini-stat">
+              <div class="k">Restaurant model</div>
+              <div class="v">0% commission on food value</div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="for-drivers">
-      <div class="container">
-        <div class="section-head">
-          <div class="mini">For Drivers</div>
-          <h2>Simple pre-launch registration for delivery partners.</h2>
-          <p>
-            Keep this section separate from restaurants. It should explain that driver onboarding is available through a dedicated form.
-          </p>
-        </div>
-
-        <div class="two-col">
-          <div class="feature-panel">
-            <div class="tag">Delivery Partner</div>
-            <h3>Driver onboarding before launch</h3>
-            <p>Make it clear that delivery partners can register early and be contacted during rollout and onboarding.</p>
-            <ul class="list">
-              <li>Early partner registration</li>
-              <li>Dedicated onboarding process</li>
-              <li>Platform communication before launch</li>
-              <li>Separate driver interest form</li>
-            </ul>
-          </div>
-
-          <div class="feature-panel">
-            <div class="tag">Action</div>
-            <h3>Driver pre-registration</h3>
-            <p>
-              Link this button to your driver Google Form. Keep the call-to-action short and clear.
-            </p>
-            <div style="margin-top:18px;">
-              <a href="YOUR_DRIVER_GOOGLE_FORM_LINK" target="_blank" rel="noopener" class="btn btn-primary">Open Driver Form</a>
+            <div class="mini-stat">
+              <div class="k">Driver view</div>
+              <div class="v">Clear onboarding and payout visibility</div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="for-customers">
-      <div class="container">
-        <div class="section-head">
-          <div class="mini">For Customers</div>
-          <h2>Show the customer promise, even before launch.</h2>
-          <p>
-            Since customers cannot order yet, this section should communicate what they can expect once EATRIX goes live.
-          </p>
-        </div>
-
-        <div class="cards-3">
-          <div class="card">
-            <div class="icon">A</div>
-            <h3>Transparent Checkout</h3>
-            <p>Present EATRIX as a platform that values straightforward pricing and clarity.</p>
-          </div>
-
-          <div class="card">
-            <div class="icon">B</div>
-            <h3>Cleaner Experience</h3>
-            <p>Explain that the platform is being built for simpler ordering and a more direct user experience.</p>
-          </div>
-
-          <div class="card">
-            <div class="icon">C</div>
-            <h3>Launch Updates</h3>
-            <p>You can later add an email waitlist here if you want customer registrations before launch.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="join">
-      <div class="container">
-        <div class="cta-band">
-          <div>
-            <h3>Join EATRIX before launch.</h3>
-            <p>Restaurant partners and delivery partners can register now through the forms below.</p>
-          </div>
-          <div style="display:flex; gap:12px; flex-wrap:wrap;">
-            <a href="YOUR_RESTAURANT_GOOGLE_FORM_LINK" target="_blank" rel="noopener" class="btn btn-primary">Restaurant Form</a>
-            <a href="YOUR_DRIVER_GOOGLE_FORM_LINK" target="_blank" rel="noopener" class="btn btn-secondary">Driver Form</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="legal">
-      <div class="container">
-        <div class="section-head">
-          <div class="mini">Legal & Policy</div>
-          <h2>Keep the pre-launch site complete and credible.</h2>
-          <p>
-            Even before launch, the site should include your legal pages and direct access to registration forms.
-          </p>
-        </div>
-
-        <div class="legal-grid">
-          <div class="legal-card">
-            <h4>Privacy Policy</h4>
-            <p>User data handling, collection, and privacy terms.</p>
-            <a href="privacy-policy.html" class="btn btn-secondary">Open Policy</a>
-          </div>
-
-          <div class="legal-card">
-            <h4>Terms & Conditions</h4>
-            <p>Platform terms for customers, restaurants, and drivers.</p>
-            <a href="terms-and-conditions.html" class="btn btn-secondary">Open Terms</a>
-          </div>
-
-          <div class="legal-card">
-            <h4>Restaurant Form</h4>
-            <p>Google Form for restaurant partner registration.</p>
-            <a href="YOUR_RESTAURANT_GOOGLE_FORM_LINK" target="_blank" rel="noopener" class="btn btn-secondary">Open Form</a>
-          </div>
-
-          <div class="legal-card">
-            <h4>Driver Form</h4>
-            <p>Google Form for delivery partner registration.</p>
-            <a href="YOUR_DRIVER_GOOGLE_FORM_LINK" target="_blank" rel="noopener" class="btn btn-secondary">Open Form</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div>
-          <div class="brand" style="margin-bottom:12px;">
-            <div class="brand-logo">EATRIX</div>
-            <div class="brand-tag">Pre-launch</div>
-          </div>
-          <p>
-            EATRIX Technologies LLP is building a transparent food delivery platform for customers, restaurants, and delivery partners.
-          </p>
-        </div>
-
-        <div>
-          <h4>Quick Links</h4>
-          <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#for-restaurants">Restaurants</a></li>
-            <li><a href="#for-drivers">Drivers</a></li>
-            <li><a href="#for-customers">Customers</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4>Legal</h4>
-          <ul>
-            <li><a href="privacy-policy.html">Privacy Policy</a></li>
-            <li><a href="terms-and-conditions.html">Terms & Conditions</a></li>
-            <li><a href="mailto:support@eatrix.in">support@eatrix.in</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="copyright">
-        <span>© 2026 EATRIX Technologies LLP. All Rights Reserved.</span>
-        <span>Hyderabad, Telangana, India</span>
-      </div>
-    </div>
-  </footer>
-
-</body>
-</html>
+            <div class="mini-stat">
+              <div class="k">Customer promise</div>
+              <div class="v">No hidden surprises at checkout</div>
+            </div>
+            <div class="mini-stat">
+              <div class="k">Rollout style</div>
+      
