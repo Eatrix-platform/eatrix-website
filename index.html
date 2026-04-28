@@ -193,13 +193,16 @@
     }
 
    .brand-logo {
-  height: 72px;        /* increased size */
-  width: auto;         /* keeps proportions correct */
-  border-radius: 14px;
+  height: 64px;
+  width: auto;
   object-fit: contain;
-  box-shadow: var(--shadow-soft);
-  background: #fff;
-  padding: 6px;
+
+  /* REMOVE these */
+  background: transparent;
+  padding: 0;
+  box-shadow: none;
+  border-radius: 0;
+
   transform: translateZ(0);
   animation: pulseGlow 4.5s ease-in-out infinite;
 }
