@@ -583,12 +583,11 @@ function submitRestaurant(){
     notes:document.getElementById('notes').value.trim(),
     submittedAt:new Date().toISOString()
   };
-  console.log('EATRIX Restaurant Registration:',data);
-  // TODO: Replace with your FastAPI endpoint
-  // fetch('https://api.eatrix.in/api/v1/pre-register/restaurant',{
-  //   method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)
-  // })
-
+  fetch('https://formspree.io/f/mnjwvjpn', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  });
   document.querySelectorAll('.fsec,.sec-div,.submit-zone').forEach(s=>s.style.display='none');
   Object.assign(document.getElementById('successScreen').style,{display:'flex'});
   window.scrollTo({top:0,behavior:'smooth'});
