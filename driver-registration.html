@@ -1,37 +1,630 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Driver Registration | EATRIX</title>
-  <style>
-    body{margin:0;font-family:Inter,Arial,sans-serif;background:#fafafa;color:#1f2937}
-    .wrap{width:min(100% - 32px,1100px);margin:0 auto;padding:32px 0}
-    .top{display:flex;align-items:center;gap:12px;margin-bottom:18px}
-    .top img{width:70px;height:70px;object-fit:contain}
-    h1{margin:0 0 8px}
-    .card{background:#fff;border:1px solid rgba(17,24,39,.08);border-radius:22px;padding:18px;box-shadow:0 18px 45px rgba(15,23,42,.08)}
-    iframe{width:100%;height:1400px;border:none;border-radius:16px;background:#fff}
-    a{color:#ef4444;text-decoration:none;font-weight:700}
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>EATRIX | VĀHAKA Delivery Partner Registration</title>
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --orange:#f97316;--orange-dark:#d9480f;--orange-2:#fb923c;
+  --orange-soft:#fff2e8;--orange-soft-2:#fff7f2;
+  --black:#111827;--ink:#18181b;--ink-mid:#52525b;--ink-light:#71717a;
+  --rule:#e8ddd5;--bg:#faf7f4;--bg-2:#fffdfb;--white:#ffffff;
+  --card:rgba(255,255,255,.82);--shadow:0 20px 60px rgba(17,24,39,.08);
+  --shadow-soft:0 14px 35px rgba(249,115,22,.14);
+  --radius:22px;--max:860px;
+  --gradient:linear-gradient(135deg,var(--orange-2),var(--orange));
+  --gradient-soft:linear-gradient(135deg,rgba(251,146,60,.14),rgba(249,115,22,.08));
+  --glass:rgba(255,255,255,.72);
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:radial-gradient(circle at 10% 10%,rgba(249,115,22,.10),transparent 28%),radial-gradient(circle at 90% 8%,rgba(251,146,60,.08),transparent 22%),radial-gradient(circle at 60% 72%,rgba(249,115,22,.06),transparent 24%),var(--bg);color:var(--ink);line-height:1.7;font-size:15px;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+.container{width:min(var(--max),calc(100% - 40px));margin:0 auto}
+
+.mesh{position:fixed;inset:0;pointer-events:none;z-index:-3;overflow:hidden}
+.mesh::before,.mesh::after{content:"";position:absolute;inset:-20%;background:radial-gradient(circle at 20% 20%,rgba(249,115,22,.12),transparent 16%),radial-gradient(circle at 80% 25%,rgba(251,146,60,.10),transparent 14%),radial-gradient(circle at 50% 80%,rgba(249,115,22,.08),transparent 18%);animation:meshShift 18s var(--ease) infinite alternate;filter:blur(18px)}
+.mesh::after{animation-duration:24s;animation-direction:alternate-reverse;opacity:.8}
+.bg-orb{position:fixed;border-radius:50%;filter:blur(90px);z-index:-2;opacity:.34;pointer-events:none;animation:orbFloat 16s var(--ease) infinite alternate}
+.orb-1{width:240px;height:240px;background:rgba(249,115,22,.18);top:70px;left:-50px}
+.orb-2{width:300px;height:300px;background:rgba(251,146,60,.14);right:-70px;top:240px;animation-delay:2s}
+.noise{position:fixed;inset:0;pointer-events:none;z-index:-1;opacity:.03;background-image:linear-gradient(to right,#000 1px,transparent 1px),linear-gradient(to bottom,#000 1px,transparent 1px);background-size:4px 4px;mix-blend-mode:multiply}
+
+.topbar{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.76);backdrop-filter:blur(16px);border-bottom:1px solid rgba(232,221,213,.86);transition:background .35s,box-shadow .35s}
+.topbar.scrolled{background:rgba(255,255,255,.90);box-shadow:0 10px 30px rgba(17,24,39,.05)}
+.topbar-inner{min-height:80px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.brand{display:flex;align-items:center;gap:14px}
+.brand-logo{height:48px;width:auto;object-fit:contain;background:transparent;animation:pulseGlow 4.5s ease-in-out infinite}
+.brand-word{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--orange);letter-spacing:-.6px}
+.brand-tag{font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:var(--ink-light);border-left:1px solid var(--rule);padding-left:12px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 24px;border-radius:999px;border:1px solid transparent;font-size:14px;font-weight:700;transition:transform .28s var(--ease),box-shadow .28s var(--ease);cursor:pointer;white-space:nowrap;font-family:'DM Sans',sans-serif}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--gradient);color:var(--white);box-shadow:0 14px 35px rgba(249,115,22,.18)}
+.btn-ghost{background:transparent;color:var(--ink-mid);border-color:var(--rule)}
+.btn-ghost:hover{border-color:rgba(249,115,22,.4);color:var(--orange)}
+
+.page-hero{padding:72px 0 56px;text-align:center;position:relative}
+.vahaka-badge{display:inline-flex;align-items:center;gap:10px;background:var(--orange-soft);color:var(--orange-dark);border:1px solid #ffd8c7;border-radius:999px;padding:10px 18px;font-size:12px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;margin-bottom:22px;animation:fadeUp .9s var(--ease) both}
+.vahaka-badge .dot{width:8px;height:8px;border-radius:50%;background:var(--orange);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,3.4rem);line-height:1.06;letter-spacing:-.03em;color:var(--ink);margin-bottom:16px;animation:fadeUp 1s .08s var(--ease) both}
+.page-hero h1 em{color:var(--orange);font-style:normal;position:relative}
+.page-hero h1 em::after{content:"";position:absolute;left:0;right:0;bottom:3px;height:8px;background:linear-gradient(90deg,rgba(249,115,22,.28),rgba(251,146,60,.16));z-index:-1;border-radius:999px;transform:scaleX(0);transform-origin:left;animation:underlineGrow .9s .9s var(--ease) forwards}
+.page-hero p{font-size:17px;color:var(--ink-mid);max-width:580px;margin:0 auto 28px;animation:fadeUp 1s .16s var(--ease) both}
+.perks-strip{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;animation:fadeUp 1s .24s var(--ease) both}
+.perk-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.82);border:1px solid var(--rule);border-radius:999px;padding:7px 14px;font-size:.82rem;color:var(--ink-mid);font-weight:500}
+.perk-tag::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--orange);flex-shrink:0}
+
+/* offer */
+.offer-section{padding:0 0 32px}
+.offer-card{background:linear-gradient(135deg,rgba(255,242,232,.96),rgba(255,253,251,.98));border:1px solid #ffd8c7;border-radius:24px;padding:32px;position:relative;overflow:hidden;box-shadow:var(--shadow-soft)}
+.offer-card::after{content:"";position:absolute;right:-40px;top:-40px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(249,115,22,.14),transparent 70%);pointer-events:none;animation:orbFloat 12s ease-in-out infinite alternate}
+.offer-label{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--orange);margin-bottom:22px;display:flex;align-items:center;gap:10px}
+.offer-label::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,#ffd8c7,transparent)}
+.offer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:22px}
+.oi{text-align:center;padding:20px 14px;background:rgba(255,255,255,.9);border:1px solid #ffecd9;border-radius:16px}
+.oi-main{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--orange);line-height:1}
+.oi-strike{font-size:.8rem;color:#aaa;text-decoration:line-through;margin-top:4px}
+.oi-lbl{font-size:.76rem;color:var(--ink-mid);line-height:1.5;margin-top:6px}
+.offer-foot{background:rgba(249,115,22,.07);border:1px solid #ffd8c7;border-radius:12px;padding:12px 16px;font-size:.82rem;color:var(--orange-dark);font-weight:600;text-align:center}
+
+/* eligibility */
+.elig-section{padding:0 0 28px}
+.elig-card{background:var(--glass);border:1px solid var(--rule);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow)}
+.elig-lbl{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--orange);margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.elig-lbl::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,#ffd8c7,transparent)}
+.elig-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.elig-item{display:flex;align-items:center;gap:10px;padding:11px 14px;background:rgba(255,255,255,.9);border:1px solid var(--rule);border-radius:12px;font-size:.84rem;color:var(--ink-mid)}
+.elig-dot{width:20px;height:20px;border-radius:50%;background:var(--gradient-soft);border:1px solid #ffd8c7;display:flex;align-items:center;justify-content:center;font-size:.7rem;color:var(--orange);font-weight:800;flex-shrink:0}
+
+/* fee info */
+.fee-breakdown{background:linear-gradient(135deg,rgba(255,245,238,.9),rgba(255,252,248,.95));border:1px solid #ffecd9;border-radius:16px;padding:22px;margin-bottom:16px}
+.fee-lbl{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--orange);margin-bottom:16px}
+.fee-rows{display:grid;gap:10px}
+.fee-row{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:rgba(255,255,255,.82);border:1px solid var(--rule);border-radius:10px;font-size:.85rem}
+.fee-key{color:var(--ink-mid)}
+.fee-val{font-weight:700;color:var(--ink)}
+.fee-val.free{color:#16a34a}
+.fee-val.highlight{color:var(--orange)}
+
+/* form card */
+.form-card{background:var(--glass);backdrop-filter:blur(10px);border:1px solid var(--rule);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;margin-bottom:32px}
+.fsec{padding:30px 32px 0}
+.fsec:last-of-type{padding-bottom:30px}
+.fsec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:16px;border-bottom:1px solid var(--rule)}
+.fsec-icon{width:44px;height:44px;border-radius:14px;background:var(--gradient-soft);border:1px solid #ffd8c7;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.fsec-title{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--ink);line-height:1.2}
+.fsec-sub{font-size:.78rem;color:var(--ink-light);margin-top:3px}
+.sec-div{height:1px;background:var(--rule);margin:4px 32px 0}
+
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.fg.full{grid-template-columns:1fr}
+.f{display:flex;flex-direction:column;gap:6px}
+.f label{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mid)}
+.req{color:var(--orange);margin-left:2px}
+.f input,.f select,.f textarea{width:100%;padding:13px 16px;background:rgba(255,255,255,.92);border:1.5px solid var(--rule);border-radius:14px;font-family:'DM Sans',sans-serif;font-size:.93rem;color:var(--ink);outline:none;transition:border-color .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
+.f input:focus,.f select:focus,.f textarea:focus{border-color:var(--orange);box-shadow:0 0 0 4px rgba(249,115,22,.10)}
+.f input::placeholder,.f textarea::placeholder{color:#c4b8b0}
+.f select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23a0a0a0' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px;cursor:pointer}
+.f textarea{resize:vertical;min-height:80px;line-height:1.7}
+.hint{font-size:.72rem;color:var(--ink-light);margin-top:3px}
+.f input.err,.f select.err{border-color:#f87171!important;box-shadow:0 0 0 4px rgba(239,68,68,.08)!important}
+.ferr{font-size:.72rem;color:#dc2626;display:none;margin-top:3px}
+.ferr.on{display:block}
+
+.rrow{display:flex;flex-wrap:wrap;gap:8px}
+.rp{display:flex;align-items:center;padding:8px 16px;border-radius:999px;border:1.5px solid var(--rule);background:rgba(255,255,255,.82);cursor:pointer;font-size:.83rem;color:var(--ink-mid);transition:all .2s;user-select:none;font-weight:500}
+.rp input{display:none}
+.rp:has(input:checked){background:var(--gradient);border-color:transparent;color:var(--white);font-weight:700;box-shadow:0 6px 18px rgba(249,115,22,.22)}
+.rp:hover:not(:has(input:checked)){border-color:#f3cdb7;color:var(--orange)}
+
+.yn{display:flex;gap:10px}
+.yp{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:12px;border-radius:12px;border:1.5px solid var(--rule);background:rgba(255,255,255,.82);cursor:pointer;font-size:.88rem;color:var(--ink-mid);transition:all .2s;user-select:none;font-weight:500}
+.yp input{display:none}
+.yp:has(input:checked){background:var(--gradient);border-color:transparent;color:var(--white);font-weight:700;box-shadow:0 6px 18px rgba(249,115,22,.22)}
+.yp:hover:not(:has(input:checked)){border-color:#f3cdb7;color:var(--orange)}
+
+.submit-zone{background:linear-gradient(135deg,rgba(255,245,238,.98),rgba(255,253,251,.98));border-top:1px solid var(--rule);padding:28px 32px;display:flex;flex-direction:column;gap:14px}
+.submit-note{font-size:.77rem;color:var(--ink-light);line-height:1.7}
+.submit-note a{color:var(--orange)}
+.btn-submit{align-self:flex-start;display:inline-flex;align-items:center;gap:10px;background:var(--gradient);color:var(--white);padding:14px 32px;border-radius:999px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:1rem;border:none;cursor:pointer;box-shadow:0 14px 35px rgba(249,115,22,.22);transition:transform .28s var(--ease),box-shadow .28s var(--ease);position:relative;overflow:hidden;isolation:isolate}
+.btn-submit::before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 20%,rgba(255,255,255,.22) 45%,transparent 70%);transform:translateX(-120%);transition:transform .7s var(--ease);z-index:-1}
+.btn-submit:hover::before{transform:translateX(120%)}
+.btn-submit:hover{transform:translateY(-2px);box-shadow:0 18px 42px rgba(249,115,22,.30)}
+.btn-submit:active{transform:scale(.97)}
+.btn-submit svg{width:16px;height:16px}
+
+.success{display:none;flex-direction:column;align-items:center;text-align:center;padding:64px 32px}
+.suc-icon{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#d1fae5,#a7f3d0);border:1px solid #6ee7b7;display:flex;align-items:center;justify-content:center;margin-bottom:22px;animation:pop .5s cubic-bezier(.34,1.56,.64,1)}
+@keyframes pop{from{transform:scale(.3);opacity:0}to{transform:scale(1);opacity:1}}
+.suc-icon svg{width:36px;height:36px;color:#059669}
+.suc-h{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:var(--ink);margin-bottom:10px}
+.suc-p{font-size:.95rem;color:var(--ink-mid);line-height:1.8;max-width:420px}
+.suc-note{margin-top:20px;display:inline-flex;align-items:center;gap:8px;background:var(--orange-soft);color:var(--orange-dark);border:1px solid #ffd8c7;border-radius:999px;padding:8px 16px;font-size:.8rem;font-weight:600}
+
+.page-footer{border-top:1px solid var(--rule);padding:36px 0;background:rgba(255,253,250,.9);margin-top:40px}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.footer-copy{font-size:.8rem;color:var(--ink-light)}
+.footer-links{display:flex;gap:20px}
+.footer-links a{font-size:.8rem;color:var(--ink-light);transition:color .2s}
+.footer-links a:hover{color:var(--orange)}
+
+@keyframes meshShift{0%{transform:translate3d(-1.5%,-1%,0) scale(1)}100%{transform:translate3d(2%,1.5%,0) scale(1.06)}}
+@keyframes orbFloat{0%{transform:translate3d(0,0,0) scale(1)}100%{transform:translate3d(14px,-24px,0) scale(1.07)}}
+@keyframes pulseGlow{0%,100%{filter:drop-shadow(0 8px 18px rgba(249,115,22,.18))}50%{filter:drop-shadow(0 12px 28px rgba(249,115,22,.28))}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
+@keyframes underlineGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.reveal{opacity:0;transform:translateY(28px) scale(.99);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.show{opacity:1;transform:translateY(0) scale(1)}
+.delay-1{transition-delay:.08s}.delay-2{transition-delay:.16s}
+
+@media(max-width:720px){
+  .fg,.offer-grid,.elig-grid,.yn{grid-template-columns:1fr}
+  .yn{flex-direction:row}
+  .fsec,.submit-zone{padding-left:20px;padding-right:20px}
+  .sec-div{margin:4px 20px 0}
+  .page-hero h1{font-size:2rem}
+}
+</style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="top">
-      <img src="assets/logo.png" alt="EATRIX logo">
-      <div>
-        <h1>Driver Registration</h1>
-        <div><a href="index.html">← Back to Home</a></div>
+<div class="mesh"></div>
+<div class="bg-orb orb-1"></div>
+<div class="bg-orb orb-2"></div>
+<div class="noise"></div>
+
+<header class="topbar" id="topbar">
+  <div class="container topbar-inner">
+    <div class="brand">
+      <img src="assets/logo.png" alt="EATRIX logo" class="brand-logo" onerror="this.style.display='none'">
+      <div class="brand-word">EATRIX</div>
+      <div class="brand-tag">Pre-Launch</div>
+    </div>
+    <a href="index.html" class="btn btn-ghost" style="min-height:40px;padding:0 18px;font-size:13px">← Back to site</a>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="vahaka-badge"><span class="dot"></span>VĀHAKA Delivery Partner Programme</div>
+    <h1>Deliver with EATRIX.<br><em>Earn more. Always.</em></h1>
+    <p>EATRIX VĀHAKA partners see every rupee of their delivery earnings — transparently. No hidden deductions, no surprises on payout day. Weekly direct bank transfers.</p>
+    <div class="perks-strip">
+      <span class="perk-tag">Full delivery fee — transparent earnings</span>
+      <span class="perk-tag">Weekly bank payouts every Monday</span>
+      <span class="perk-tag">Uniform + delivery bag provided</span>
+      <span class="perk-tag">Kompally, Hyderabad — Phase 1</span>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <!-- LAUNCH OFFER -->
+  <section class="offer-section reveal">
+    <div class="offer-card">
+      <div class="offer-label">🔥 VĀHAKA Founding Partner Offer — First Batch Only</div>
+      <div class="offer-grid">
+        <div class="oi">
+          <div class="oi-main">₹0</div>
+          <div class="oi-strike">₹149/month + GST</div>
+          <div class="oi-lbl">First 3 months completely free — no subscription fee for founding VĀHAKA partners</div>
+        </div>
+        <div class="oi">
+          <div class="oi-main">Free</div>
+          <div class="oi-strike">₹1,000 cost</div>
+          <div class="oi-lbl">Branded delivery bag and uniform provided free to the first batch of partners</div>
+        </div>
+        <div class="oi">
+          <div class="oi-main">100%</div>
+          <div class="oi-lbl">Transparent earnings — you see every rupee before and after payout every week</div>
+        </div>
+      </div>
+      <div class="offer-foot">⏳ First-batch founding partner benefits — register now before launch spots fill</div>
+    </div>
+  </section>
+
+  <!-- ELIGIBILITY -->
+  <section class="elig-section reveal delay-1">
+    <div class="elig-card">
+      <div class="elig-lbl">Requirements to join VĀHAKA</div>
+      <div class="elig-grid">
+        <div class="elig-item"><span class="elig-dot">✓</span>Valid Aadhaar card</div>
+        <div class="elig-item"><span class="elig-dot">✓</span>Valid PAN card</div>
+        <div class="elig-item"><span class="elig-dot">✓</span>Valid two-wheeler Driving Licence</div>
+        <div class="elig-item"><span class="elig-dot">✓</span>Own bike, scooter, or bicycle</div>
+        <div class="elig-item"><span class="elig-dot">✓</span>Android smartphone (v8.0 or above)</div>
+        <div class="elig-item"><span class="elig-dot">✓</span>Bank account in your own name</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORM -->
+  <div class="form-card reveal delay-2" id="formCard">
+
+    <!-- S1: Personal -->
+    <div class="fsec">
+      <div class="fsec-head">
+        <div class="fsec-icon">👤</div>
+        <div>
+          <div class="fsec-title">Personal Information</div>
+          <div class="fsec-sub">As it appears on your Aadhaar card — used for KYC verification</div>
+        </div>
+      </div>
+
+      <div class="fg">
+        <div class="f">
+          <label>Full Name <span class="req">*</span></label>
+          <input type="text" id="fn" placeholder="As on Aadhaar card" autocomplete="name">
+          <div class="ferr" id="e1">Please enter your full name</div>
+        </div>
+        <div class="f">
+          <label>Age <span class="req">*</span></label>
+          <input type="number" id="age" placeholder="e.g. 24" min="18" max="60" inputmode="numeric">
+          <div class="hint">Must be 18 years or older to join VĀHAKA</div>
+          <div class="ferr" id="e2">Must be 18 or above</div>
+        </div>
+      </div>
+
+      <div class="fg">
+        <div class="f">
+          <label>WhatsApp Number <span class="req">*</span></label>
+          <input type="tel" id="wa" placeholder="10-digit mobile number" maxlength="10" inputmode="numeric">
+          <div class="hint">Onboarding kit and schedule sent here</div>
+          <div class="ferr" id="e3">Enter a valid 10-digit WhatsApp number</div>
+        </div>
+        <div class="f">
+          <label>Email Address</label>
+          <input type="email" id="email" placeholder="your@email.com" autocomplete="email">
+          <div class="hint">Optional — for platform account and payslips</div>
+        </div>
+      </div>
+
+      <div class="fg">
+        <div class="f">
+          <label>Area you live in <span class="req">*</span></label>
+          <select id="area">
+            <option value="">— Select your area —</option>
+            <option>Kompally</option>
+            <option>Alwal</option>
+            <option>Bolarum</option>
+            <option>Suraram</option>
+            <option>Jeedimetla</option>
+            <option>Medchal</option>
+            <option>Shameerpet</option>
+            <option>Secunderabad</option>
+            <option>Nacharam</option>
+            <option>Other nearby area</option>
+          </select>
+          <div class="ferr" id="e4">Please select your area</div>
+        </div>
+        <div class="f">
+          <label>Can you deliver in Kompally area? <span class="req">*</span></label>
+          <div class="yn">
+            <label class="yp"><input type="radio" name="kompally" value="Yes"> ✓ Yes, I can</label>
+            <label class="yp"><input type="radio" name="kompally" value="No"> ✗ No</label>
+          </div>
+          <div class="hint">EATRIX Phase 1 covers Kompally and nearby areas</div>
+          <div class="ferr" id="e5">Please answer this question</div>
+        </div>
       </div>
     </div>
 
-    <div class="card">
-      <iframe
-        src="https://docs.google.com/forms/d/e/1FAIpQLSf_ahTpPofe1rfhEtbA1QAm_Ir-bqiuHJEvMmVtkS1dJggh8g/viewform?embedded=true"
-        title="Driver Registration">
-        Loading…
-      </iframe>
+    <div class="sec-div"></div>
+
+    <!-- S2: Vehicle & Documents -->
+    <div class="fsec">
+      <div class="fsec-head">
+        <div class="fsec-icon">🛵</div>
+        <div>
+          <div class="fsec-title">Vehicle & Documents</div>
+          <div class="fsec-sub">Your delivery vehicle type and licence details</div>
+        </div>
+      </div>
+
+      <div class="fg full">
+        <div class="f">
+          <label>Vehicle type <span class="req">*</span></label>
+          <div class="rrow">
+            <label class="rp"><input type="radio" name="vehicle" value="Bike (Petrol)">🏍️ Bike (petrol)</label>
+            <label class="rp"><input type="radio" name="vehicle" value="Scooter (Petrol)">🛵 Scooter (petrol)</label>
+            <label class="rp"><input type="radio" name="vehicle" value="Electric Bike / Scooter">⚡ Electric bike/scooter</label>
+            <label class="rp"><input type="radio" name="vehicle" value="Bicycle">🚲 Bicycle</label>
+          </div>
+          <div class="ferr" id="e6">Please select your vehicle type</div>
+        </div>
+      </div>
+
+      <div class="fg">
+        <div class="f">
+          <label>Valid Driving Licence? <span class="req">*</span></label>
+          <div class="yn">
+            <label class="yp"><input type="radio" name="dl" value="Yes"> ✓ Yes, I have one</label>
+            <label class="yp"><input type="radio" name="dl" value="No"> ✗ No</label>
+          </div>
+          <div class="hint">Two-wheeler licence required for bike/scooter</div>
+          <div class="ferr" id="e7">Please answer this question</div>
+        </div>
+        <div class="f">
+          <label>Vehicle Registration Certificate (RC)? <span class="req">*</span></label>
+          <div class="yn">
+            <label class="yp"><input type="radio" name="rc" value="Yes"> ✓ Yes</label>
+            <label class="yp"><input type="radio" name="rc" value="No"> ✗ No</label>
+          </div>
+          <div class="hint">RC required for motor vehicles — not needed for bicycles</div>
+          <div class="ferr" id="e8">Please answer this question</div>
+        </div>
+      </div>
+
+      <div class="fg">
+        <div class="f">
+          <label>Aadhaar card available? <span class="req">*</span></label>
+          <div class="yn">
+            <label class="yp"><input type="radio" name="aadhaar" value="Yes"> ✓ Yes</label>
+            <label class="yp"><input type="radio" name="aadhaar" value="No"> ✗ No</label>
+          </div>
+          <div class="hint">Required for KYC — will be verified during onboarding</div>
+          <div class="ferr" id="e9">Aadhaar is required for onboarding</div>
+        </div>
+        <div class="f">
+          <label>PAN card available?</label>
+          <div class="yn">
+            <label class="yp"><input type="radio" name="pan" value="Yes"> ✓ Yes</label>
+            <label class="yp"><input type="radio" name="pan" value="No — will get one"> ✗ Will get one</label>
+          </div>
+          <div class="hint">Required for platform onboarding</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-div"></div>
+
+    <!-- S3: Fees & Earnings -->
+    <div class="fsec">
+      <div class="fsec-head">
+        <div class="fsec-icon">💰</div>
+        <div>
+          <div class="fsec-title">Fees & Earnings — Full Transparency</div>
+          <div class="fsec-sub">Everything you earn and everything you pay — no hidden surprises</div>
+        </div>
+      </div>
+
+      <div class="fee-breakdown">
+        <div class="fee-lbl">VĀHAKA Complete Fee Structure</div>
+        <div class="fee-rows">
+          <div class="fee-row">
+            <span class="fee-key">Monthly subscription (from Month 4 onwards)</span>
+            <span class="fee-val">₹149 + 18% GST = ₹175.82/month</span>
+          </div>
+          <div class="fee-row">
+            <span class="fee-key">First 3 months subscription — founding partner offer</span>
+            <span class="fee-val free">₹0 — Completely FREE</span>
+          </div>
+          <div class="fee-row">
+            <span class="fee-key">Delivery bag + uniform (first batch only)</span>
+            <span class="fee-val free">₹0 — Provided FREE</span>
+          </div>
+          <div class="fee-row">
+            <span class="fee-key">EATRIX commission on your delivery earnings</span>
+            <span class="fee-val free">₹0 — Zero commission</span>
+          </div>
+          <div class="fee-row">
+            <span class="fee-key">What you earn per delivery (example ranges)</span>
+            <span class="fee-val highlight">₹27 (3km) to ₹90+ (10km)</span>
+          </div>
+          <div class="fee-row">
+            <span class="fee-key">Payout frequency & method</span>
+            <span class="fee-val highlight">Every Monday — direct bank transfer</span>
+          </div>
+          <div class="fee-row">
+            <span class="fee-key">Penalty system (if fault is confirmed)</span>
+            <span class="fee-val">Max 15% of weekly earnings only — never full deduction</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="fg">
+        <div class="f">
+          <label>Hours available per day <span class="req">*</span></label>
+          <div class="rrow">
+            <label class="rp"><input type="radio" name="hours" value="2–4 hours/day">2–4 hours</label>
+            <label class="rp"><input type="radio" name="hours" value="4–8 hours/day">4–8 hours</label>
+            <label class="rp"><input type="radio" name="hours" value="Full time (8+ hours)">Full time (8+)</label>
+          </div>
+          <div class="ferr" id="e10">Please select your availability</div>
+        </div>
+        <div class="f">
+          <label>Bank account in your name?</label>
+          <div class="yn">
+            <label class="yp"><input type="radio" name="bank" value="Yes — savings account"> ✓ Yes</label>
+            <label class="yp"><input type="radio" name="bank" value="No — will open one"> ✗ Will open</label>
+          </div>
+          <div class="hint">Required for weekly Razorpay payouts</div>
+        </div>
+      </div>
+
+      <div class="fg">
+        <div class="f">
+          <label>Do you have an Android smartphone?</label>
+          <div class="rrow">
+            <label class="rp"><input type="radio" name="phone" value="Android (version 8+)">✓ Android 8+</label>
+            <label class="rp"><input type="radio" name="phone" value="iPhone">iPhone</label>
+            <label class="rp"><input type="radio" name="phone" value="Older Android">Older Android</label>
+            <label class="rp"><input type="radio" name="phone" value="No smartphone">No smartphone</label>
+          </div>
+          <div class="hint">EATRIX driver app requires Android 8.0 or above</div>
+        </div>
+        <div class="f">
+          <label>Currently delivering for</label>
+          <div class="rrow">
+            <label class="rp"><input type="radio" name="curr" value="Swiggy">Swiggy</label>
+            <label class="rp"><input type="radio" name="curr" value="Zomato">Zomato</label>
+            <label class="rp"><input type="radio" name="curr" value="Porter">Porter</label>
+            <label class="rp"><input type="radio" name="curr" value="Multiple apps">Multiple</label>
+            <label class="rp"><input type="radio" name="curr" value="Not currently">Not currently</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-div"></div>
+
+    <!-- S4: Final questions -->
+    <div class="fsec">
+      <div class="fsec-head">
+        <div class="fsec-icon">💬</div>
+        <div>
+          <div class="fsec-title">A Few Final Questions</div>
+          <div class="fsec-sub">Optional — helps us prepare your onboarding and plan launch logistics</div>
+        </div>
+      </div>
+
+      <div class="fg full">
+        <div class="f">
+          <label>How did you hear about EATRIX VĀHAKA?</label>
+          <div class="rrow">
+            <label class="rp"><input type="radio" name="src" value="Instagram">Instagram</label>
+            <label class="rp"><input type="radio" name="src" value="WhatsApp">WhatsApp</label>
+            <label class="rp"><input type="radio" name="src" value="Friend / family">Friend</label>
+            <label class="rp"><input type="radio" name="src" value="Pamphlet / poster">Pamphlet</label>
+            <label class="rp"><input type="radio" name="src" value="Field team">Field team</label>
+            <label class="rp"><input type="radio" name="src" value="Other">Other</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="fg">
+        <div class="f">
+          <label>Main reason for joining EATRIX</label>
+          <div class="rrow">
+            <label class="rp"><input type="radio" name="reason" value="Better earnings transparency">Better earnings</label>
+            <label class="rp"><input type="radio" name="reason" value="Unhappy with current platform">Unhappy elsewhere</label>
+            <label class="rp"><input type="radio" name="reason" value="New to delivery work">New to delivery</label>
+            <label class="rp"><input type="radio" name="reason" value="Extra income">Extra income</label>
+          </div>
+        </div>
+        <div class="f">
+          <label>When do you want to start delivering?</label>
+          <div class="rrow">
+            <label class="rp"><input type="radio" name="start" value="From launch day">From launch day</label>
+            <label class="rp"><input type="radio" name="start" value="Within first week">Within first week</label>
+            <label class="rp"><input type="radio" name="start" value="Just exploring">Just exploring</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="fg full">
+        <div class="f">
+          <label>Questions, concerns, or anything you want to tell us?</label>
+          <textarea id="notes" placeholder="Any questions about earnings, onboarding, the platform, schedule, or anything else..."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUBMIT -->
+    <div class="submit-zone">
+      <p class="submit-note">
+        By submitting this form you agree to be contacted by EATRIX Technologies LLP (LLPIN: ACW-3549) for VĀHAKA delivery partner onboarding. Your data is used only for platform registration and is never shared with third parties. See our <a href="privacy.html">Privacy Policy</a> and <a href="terms.html">Terms & Conditions</a> at eatrix.in.
+      </p>
+      <button class="btn-submit" onclick="submitDriver()">
+        Apply as VĀHAKA Partner
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+
+    <!-- SUCCESS -->
+    <div class="success" id="successScreen">
+      <div class="suc-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+      </div>
+      <div class="suc-h">Welcome, VĀHAKA! 🛵</div>
+      <p class="suc-p">You're registered as an EATRIX VĀHAKA founding partner. Our team will WhatsApp you within 24 hours with your onboarding schedule. Your 3-month free subscription and complimentary delivery bag are confirmed.</p>
+      <div class="suc-note">📱 Onboarding details coming on WhatsApp</div>
     </div>
   </div>
+
+  <div style="text-align:center;padding-bottom:20px">
+    <a href="eatrix_restaurant_form.html" class="btn btn-ghost" style="font-size:13px">
+      Looking to join as a Restaurant Partner instead? →
+    </a>
+  </div>
+</div>
+
+<footer class="page-footer">
+  <div class="container footer-inner">
+    <div class="brand">
+      <img src="assets/logo.png" alt="EATRIX" class="brand-logo" style="height:36px" onerror="this.style.display='none'">
+      <div class="brand-word" style="font-size:20px">EATRIX</div>
+    </div>
+    <div class="footer-copy">© 2026 EATRIX Technologies LLP · Hyderabad, Telangana</div>
+    <div class="footer-links">
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="mailto:support@eatrix.in">support@eatrix.in</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const topbar=document.getElementById('topbar');
+window.addEventListener('scroll',()=>topbar.classList.toggle('scrolled',window.scrollY>12));
+const ro=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');ro.unobserve(e.target)}}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+
+function submitDriver(){
+  let ok=true;
+  const fe=(id,eid,bad)=>{document.getElementById(id)?.classList.toggle('err',bad);document.getElementById(eid)?.classList.toggle('on',bad);if(bad)ok=false};
+  const fr=(name,eid)=>{const bad=!document.querySelector(`input[name="${name}"]:checked`);document.getElementById(eid)?.classList.toggle('on',bad);if(bad)ok=false};
+
+  fe('fn','e1',!document.getElementById('fn').value.trim());
+  const age=parseInt(document.getElementById('age').value);
+  fe('age','e2',isNaN(age)||age<18);
+  fe('wa','e3',!/^\d{10}$/.test(document.getElementById('wa').value.trim()));
+  fe('area','e4',!document.getElementById('area').value);
+  fr('kompally','e5');
+  fr('vehicle','e6');
+  fr('dl','e7');
+  fr('rc','e8');
+  fr('aadhaar','e9');
+  fr('hours','e10');
+
+  if(!ok){document.querySelector('.ferr.on')?.scrollIntoView({behavior:'smooth',block:'center'});return}
+
+  const data={
+    type:'driver_vahaka',
+    fullName:document.getElementById('fn').value.trim(),
+    age:document.getElementById('age').value,
+    whatsapp:document.getElementById('wa').value.trim(),
+    email:document.getElementById('email').value.trim(),
+    area:document.getElementById('area').value,
+    canDeliverKompally:document.querySelector('input[name=kompally]:checked')?.value,
+    vehicleType:document.querySelector('input[name=vehicle]:checked')?.value,
+    hasDrivingLicence:document.querySelector('input[name=dl]:checked')?.value,
+    hasRC:document.querySelector('input[name=rc]:checked')?.value,
+    hasAadhaar:document.querySelector('input[name=aadhaar]:checked')?.value,
+    hasPAN:document.querySelector('input[name=pan]:checked')?.value||'',
+    hoursPerDay:document.querySelector('input[name=hours]:checked')?.value,
+    hasBankAccount:document.querySelector('input[name=bank]:checked')?.value||'',
+    smartphone:document.querySelector('input[name=phone]:checked')?.value||'',
+    currentPlatform:document.querySelector('input[name=curr]:checked')?.value||'',
+    source:document.querySelector('input[name=src]:checked')?.value||'',
+    reasonToJoin:document.querySelector('input[name=reason]:checked')?.value||'',
+    startWhen:document.querySelector('input[name=start]:checked')?.value||'',
+    notes:document.getElementById('notes').value.trim(),
+    submittedAt:new Date().toISOString()
+  };
+  console.log('EATRIX VAHAKA Registration:',data);
+  // TODO: fetch('https://api.eatrix.in/api/v1/pre-register/driver',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
+
+  document.querySelectorAll('.fsec,.sec-div,.submit-zone').forEach(s=>s.style.display='none');
+  Object.assign(document.getElementById('successScreen').style,{display:'flex'});
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
 </body>
 </html>
